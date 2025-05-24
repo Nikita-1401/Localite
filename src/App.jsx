@@ -8,6 +8,7 @@ function App() {
      <h1 className=' text-2xl font-bold '>Nikita</h1>
      <h1 className=' text-2xl font-bold '>Sujal</h1>
      <h1 className=' text-2xl font-bold '>Satyam</h1>
+     <h1 className=' text-2xl font-bold '>very good niku</h1>
        
     </>
   )
