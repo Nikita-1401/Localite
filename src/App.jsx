@@ -7,6 +7,7 @@ function App() {
     <>
        
      <h1 className=' text-2xl font-bold '>Nikita</h1>
+     <p>satyam sujal pgal hai</p>
     </>
   )
 }
