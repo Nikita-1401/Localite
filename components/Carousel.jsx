@@ -27,7 +27,7 @@ const Carousel = () => {
             <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 py-8 ">
                 
                 {/* Carousel */}
-                <div className="w-full md:w-1/2 relative h-[550px] md:h-[400px] overflow-hidden rounded-2xl shadow-xl lg:h-[768px] ">
+                <div className="w-full md:w-1/2 relative h-[500px] md:h-[400px] overflow-hidden rounded-2xl shadow-xl lg:h-[650px] ">
                     {/* Image container */}
                     <div 
                         className="flex transition-transform duration-500 ease-in-out h-full"
