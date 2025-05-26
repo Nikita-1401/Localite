@@ -5,7 +5,8 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className='relative bg-emerald-200 min-h-[64px]'>
+     
+        <nav className='relative bg-emerald-200  '>
             {/* Main navbar content - always visible */}
             <div className="flex items-center p-4 gap-4">
                 <div className="logo flex gap-2 items-center flex-1">
@@ -43,6 +44,7 @@ const Navbar = () => {
                 <button className='bg-white text-black rounded-full p-2 w-full'>Signup</button>
             </div>
         </nav>
+    
     </>
   )
 }
