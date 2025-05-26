@@ -5,21 +5,17 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 const containerStyle = {
   width: '100%',
   height: '100%',
-  minHeight: '400px',
-  maxHeight: '600px'
 };
 
 const center = {
-  lat: 28.6139,  // Default location (New Delhi)
-  lng: 77.2090
+  lat: 28.6139,
+  lng: 77.2090,
 };
 
 const Map = ({ locations = [] }) => {
   return (
     <div className="map-container">
-      <LoadScript
-        googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4"
-      >
+      <LoadScript googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
@@ -30,19 +26,28 @@ const Map = ({ locations = [] }) => {
           ))}
         </GoogleMap>
       </LoadScript>
+
       <style jsx>{`
         .map-container {
           width: 100%;
           height: 600px;
         }
+
+        @media (max-width: 1024px) {
+          .map-container {
+            height: 500px;
+          }
+        }
+
         @media (max-width: 768px) {
           .map-container {
             height: 400px;
           }
         }
+
         @media (max-width: 480px) {
           .map-container {
-            height: 200px;
+            height: 250px;
           }
         }
       `}</style>
