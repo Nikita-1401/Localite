@@ -6,8 +6,6 @@ import SearchSection from '../components/Search'
 import Map from '../components/Map';
  
 
-
- 
   function App() {
     // Example locations (you can make this dynamic)
     const locations = [
@@ -21,7 +19,7 @@ import Map from '../components/Map';
       <Navbar />
       <Carousel />
       <SearchSection />
-      <div style={{ width: '80%', margin: '0 auto' }}>
+      <div style={{ width: '70%', margin: '50px 0', height: 'auto' }}>
         <Map locations={locations} />
       </div>
      </>
