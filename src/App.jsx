@@ -4,10 +4,8 @@ import Navbar from '../components/Navbar'
 import Carousel from '../components/Carousel'
 import SearchSection from '../components/Search'
 import Map from '../components/Map';
-import Footer from '../components/Footer';
-
-
  
+
   function App() {
     // Example locations (you can make this dynamic)
     const locations = [
@@ -21,7 +19,7 @@ import Footer from '../components/Footer';
       <Navbar />
       <Carousel />
       <SearchSection />
-      <div style={{ width: '70%', margin: '50px 0' }}>
+      <div style={{ width: '70%', margin: '50px 0', height: 'auto' }}>
         <Map locations={locations} />
       </div>
       <Footer />
