@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import Carousel from '../components/Carousel'
 import SearchSection from '../components/Search'
 import Map from '../components/Map';
- 
+import Footer from '../components/Footer';
 
 
  
@@ -21,9 +21,10 @@ import Map from '../components/Map';
       <Navbar />
       <Carousel />
       <SearchSection />
-      <div style={{ width: '80%', margin: '0 auto' }}>
+      <div style={{ width: '70%', margin: '50px 0' }}>
         <Map locations={locations} />
       </div>
+      <Footer />
      </>
    
   )
