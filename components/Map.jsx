@@ -4,7 +4,9 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
-  height: '600px'
+  height: '100%',
+  minHeight: '400px',
+  maxHeight: '600px'
 };
 
 const center = {
@@ -14,20 +16,37 @@ const center = {
 
 const Map = ({ locations = [] }) => {
   return (
-    
-    <LoadScript
-      googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4"
-    >
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
+    <div className="map-container">
+      <LoadScript
+        googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4"
       >
-        {locations.map((location, index) => (
-          <Marker key={index} position={location} />
-        ))}
-      </GoogleMap>
-    </LoadScript>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+        >
+          {locations.map((location, index) => (
+            <Marker key={index} position={location} />
+          ))}
+        </GoogleMap>
+      </LoadScript>
+      <style jsx>{`
+        .map-container {
+          width: 100%;
+          height: 600px;
+        }
+        @media (max-width: 768px) {
+          .map-container {
+            height: 400px;
+          }
+        }
+        @media (max-width: 480px) {
+          .map-container {
+            height: 200px;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 
