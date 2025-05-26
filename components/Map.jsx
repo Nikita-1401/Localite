@@ -14,6 +14,7 @@ const center = {
 
 const Map = ({ locations = [] }) => {
   return (
+    
     <LoadScript
       googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4"
     >

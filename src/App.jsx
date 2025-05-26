@@ -22,6 +22,7 @@ import Map from '../components/Map';
       <div style={{ width: '70%', margin: '50px 0', height: 'auto' }}>
         <Map locations={locations} />
       </div>
+      <Footer />
      </>
    
   )
