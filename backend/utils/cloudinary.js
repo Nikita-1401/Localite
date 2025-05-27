@@ -1,27 +1,29 @@
-import { v2 as cloudinary } from 'cloudinary';
-import fs from 'fs';
+import pkg from 'cloudinary';
+const { v2: cloudinary } = pkg;
+import fs from "fs-extra";
 
-
-cloudinary.config({ 
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
+cloudinary.config({
+  cloud_name: "local-ite",
+  api_key: "158588187176898",
+  api_secret: "Kpl2IyN4g3K-uYGeyOwqgr1uJM",
 });
 
-const uploadOnCloudinary = async (localFilePath) =>{
-    try {
-        if (!localFilePath) return null;
-        //upload the file on cloudinary
-        const response = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: "auto"
-        })
-        //file has been uploaded successfully
-        console.log("File is uploaded on cloudinary", response.url);
-        return response;        
-    } catch (error) {
-        fs.unlinkSync(localFilePath);
-        return null;
-    }
-}
+ 
+export async function uploadOnCloudinary(localPath, type = "auto") {
+  if (!localPath) return null;
 
-export {uploadOnCloudinary};
+  try {
+    const res = await cloudinary.uploader.upload(localPath, {
+      resource_type: type,        // "auto" guesses; use "video" if you’re only doing videos
+      folder: "my-app",           // ⚙️ put uploads in a folder (optional)
+    });
+    console.log("✅ Uploaded to Cloudinary →", res.secure_url);
+    return res;
+  } catch (err) {
+    console.error(err);
+    return null;
+  } finally {
+    // always remove the temp file
+    await fs.remove(localPath);
+  }
+}
