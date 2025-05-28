@@ -3,9 +3,9 @@ const { v2: cloudinary } = pkg;
 import fs from "fs-extra";
 
 cloudinary.config({
-  cloud_name: "local-ite",
-  api_key: "158588187176898",
-  api_secret: "Kpl2IyN4g3K-uYGeyOwqgr1uJM",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
  
