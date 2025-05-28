@@ -1,6 +1,9 @@
 import pkg from 'cloudinary';
 const { v2: cloudinary } = pkg;
 import fs from "fs-extra";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

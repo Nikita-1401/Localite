@@ -5,6 +5,7 @@ import Carousel from '../components/Carousel'
 import SearchSection from '../components/Search'
 import Map from '../components/Map';
 import Footer from '../components/Footer';
+import Dashboard from '../components/dashboard';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       </div>
 
       <Footer />
+      <Dashboard />
     </>
 
   )
