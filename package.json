@@ -19,6 +19,7 @@
     "google-map-react": "^2.2.5",
     "mongoose": "^8.15.0",
     "multer": "^2.0.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "use-places-autocomplete": "^4.0.1"
