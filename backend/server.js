@@ -3,10 +3,12 @@ import uploadRouter from './routes/upload.js';
 import dotenv from "dotenv";
 import connectDB from './lib/db.js';
 import mongoRouter from "./routes/mongo.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
 
+app.use(cors());
 
 //connect to database
 connectDB();
