@@ -21,7 +21,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
-    <Navbar
+      <Navbar
         onSignupClick={() => setShowSignup(true)}
         onLoginClick={() => setShowLogin(true)}
       />
@@ -43,8 +43,8 @@ function App() {
 
       <Footer />
       <Dashboard />
-      
-      
+
+
 
     </>
   );
