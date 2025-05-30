@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 
+
 const Dashboard = () => {
   const [data, setData] = useState({
     name: "",
@@ -7,6 +8,7 @@ const Dashboard = () => {
     landmark: "",
     location: "",
     category: "",
+    imageUrl: "",
   });
 
   const fileInputRef = useRef(null);
@@ -46,7 +48,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/mongo", {
+      const res = await fetch("http://localhost:5000/api/mongo/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +57,9 @@ const Dashboard = () => {
       });
 
       const result = await res.json();
+      console.log(result);
       alert("Data submitted successfully: " + result.message);
+
     } catch (err) {
       console.error("Submit failed", err);
       alert("Submit failed");
