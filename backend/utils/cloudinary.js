@@ -1,3 +1,5 @@
+//utils/cloudinary.js
+
 import pkg from 'cloudinary';
 const { v2: cloudinary } = pkg;
 import fs from "fs-extra";
