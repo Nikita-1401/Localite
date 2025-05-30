@@ -85,6 +85,21 @@ const Dashboard = () => {
       const result = await res.json();
       console.log(result);
       alert("Data submitted successfully!");
+      
+      // Clear the form by resetting data to initial state
+      setData({
+        name: "",
+        description: "",
+        landmark: "",
+        location: "",
+        category: "",
+        imageUrl: "",
+      });
+      
+      // Clear the file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (err) {
       console.error(err);
       alert("Submit failed. Check console for details.");
