@@ -21,6 +21,7 @@ const dashboard = () => {
         <div className="flex flex-col lg:flex-row w-full gap-4">
           <input className="w-full border-2 border-emerald-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-emerald-50 text-gray-700 lg:h-15 p-4 text-lg" type="file" name="file" />
           <button className="bg-blue-500 text-white p-4 rounded-lg lg:h-15 text-lg w-full lg:w-auto" type="submit">Upload</button>
+          
         </div>
       </form>
       </div>
