@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
- 
+
 const Dashboard = () => {
   const [data, setData] = useState({
     name: "",
@@ -42,7 +42,7 @@ const Dashboard = () => {
         body: formData,
       });
 
-      // ❗️Any non‑200 status will throw to the catch block
+      // Any non‑200 status will throw to the catch block
       if (!res.ok) throw new Error(`Upload failed with ${res.status}`);
 
       const result = await res.json();
