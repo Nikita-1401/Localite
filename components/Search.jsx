@@ -24,7 +24,7 @@ const SearchSection = () => {
     return (
         <section className="px-4 py-6 bg-emerald-200 space-y-3 lg:h-30 lg:flex lg:gap-4">
             {/* Location Dropdown */}
-
+            
             <select
                
                 value={location}
