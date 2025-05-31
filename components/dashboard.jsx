@@ -161,9 +161,11 @@ const Dashboard = () => {
           value={data.category}
         >
           <option value="">Select Category</option>
-          <option value="1">Visiting spot</option>
-          <option value="2">Lodging</option>
-          <option value="3">Restaurant</option>
+          <option value="spots">Visiting spot</option>
+          <option value="lodging">Lodging</option>
+          <option value="restaurants">Restaurant</option>
+          <option value="shopping">Shopping</option>
+          <option value="services">Services</option>
         </select>
 
         {/* File Upload Section */}
@@ -176,7 +178,7 @@ const Dashboard = () => {
               name="file"
             />
             <button
-              className="bg-blue-500 text-white p-4 rounded-lg lg:h-15 text-lg w-full lg:w-auto"
+              className="cursor-pointer bg-blue-500 text-white p-4 rounded-lg lg:h-15 text-lg w-full lg:w-auto"
               type="submit"
             >
               Upload
@@ -199,7 +201,7 @@ const Dashboard = () => {
         <div className="flex justify-center items-center mt-4">
           <button
             onClick={handleSubmit}
-            className="bg-violet-600 text-white flex justify-center items-center p-4 lg:px-12 rounded-full lg:h-15 text-lg w-full lg:w-auto"
+            className="cursor-pointer bg-violet-600 text-white flex justify-center items-center p-4 lg:px-12 rounded-full lg:h-15 text-lg w-full lg:w-auto"
           >
             Submit
           </button>
