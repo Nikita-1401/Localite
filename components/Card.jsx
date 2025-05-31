@@ -9,9 +9,9 @@ const Card = () => {
         {/* Image */}
         <div className="w-full md:w-[400px] flex-shrink-0">
           <img
-            src="./picture.png"
+            src="./picture.png" 
             alt="Modern house"
-            className="w-full h-[250px] md:h-[300px] object-cover"
+            className="w-full h-[250px] md:h-[300px] object-cover rounded-lg m-2"
           />
         </div>
 
@@ -19,7 +19,7 @@ const Card = () => {
         <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
-              Modern house in the heart of the city
+              Modern house in the heart of the city 
             </h2>
             <p className="text-gray-600 text-base md:text-lg mb-4">
               A beautiful space perfect for a weekend getaway with modern furniture
