@@ -14,7 +14,7 @@ const Navbar = ({ onSignupClick, onLoginClick }) => {
               placeholder="Search" 
               className='border border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-emerald-50 rounded-md p-2 w-full lg:w-[500px]' 
             />
-            <button className='bg-emerald-700 text-white rounded-md p-2 whitespace-nowrap'>Search</button>
+            <button className='cursor-pointer bg-emerald-700 text-white rounded-md p-2 whitespace-nowrap'>Search</button>
           </div>
         </div>
 
@@ -28,14 +28,14 @@ const Navbar = ({ onSignupClick, onLoginClick }) => {
         </button>
 
         <div className='hidden md:flex gap-4'>
-          <button onClick={onLoginClick} className='bg-white text-black rounded-full p-2 px-6'>Login</button>
-          <button onClick={onSignupClick} className='bg-white text-black rounded-full p-2 px-6'>Signup</button>
+          <button onClick={onLoginClick} className='cursor-pointer bg-white text-black rounded-full p-2 px-6'>Login</button>
+          <button onClick={onSignupClick} className='cursor-pointer bg-white text-black rounded-full p-2 px-6'>Signup</button>
         </div>
       </div>
 
       <div className={`${isMenuOpen ? 'flex' : 'hidden'} md:hidden flex-col gap-2 p-4 border-t border-emerald-300`}>
-        <button onClick={onLoginClick} className='bg-white text-black rounded-full p-2 w-full'>Login</button>
-        <button onClick={onSignupClick} className='bg-white text-black rounded-full p-2 w-full'>Signup</button>
+        <button onClick={onLoginClick} className='cursor-pointer bg-white text-black rounded-full p-2 w-full'>Login</button>
+        <button onClick={onSignupClick} className='cursor-pointer   bg-white text-black rounded-full p-2 w-full'>Signup</button>
       </div>
     </nav>
   );
