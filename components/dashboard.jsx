@@ -41,10 +41,10 @@ const Dashboard = () => {
         method: "POST",
         body: formData,
       });
+ if (!res.ok) throw new Error(`Upload failed with ${res.status}`);
 
-      // Any non‑200 status will throw to the catch block
-      if (!res.ok) throw new Error(`Upload failed with ${res.status}`);
-
+      // ❗️Any non‑200 status will throw to the catch block
+     
       const result = await res.json();
 
       // We expect { public_id, url, type } from the backend
@@ -85,6 +85,21 @@ const Dashboard = () => {
       const result = await res.json();
       console.log(result);
       alert("Data submitted successfully!");
+      
+      // Clear the form by resetting data to initial state
+      setData({
+        name: "",
+        description: "",
+        landmark: "",
+        location: "",
+        category: "",
+        imageUrl: "",
+      });
+      
+      // Clear the file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (err) {
       console.error(err);
       alert("Submit failed. Check console for details.");
