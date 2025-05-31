@@ -41,10 +41,10 @@ const Dashboard = () => {
         method: "POST",
         body: formData,
       });
+ if (!res.ok) throw new Error(`Upload failed with ${res.status}`);
 
       // ❗️Any non‑200 status will throw to the catch block
-      if (!res.ok) throw new Error(`Upload failed with ${res.status}`);
-
+     
       const result = await res.json();
 
       // We expect { public_id, url, type } from the backend

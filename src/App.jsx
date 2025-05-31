@@ -9,6 +9,7 @@ import Dashboard from "../components/dashboard";
 import SignIn from "../components/SignIn";
 import SignUpModal from "../components/SignUpModal";
 import { useState } from "react";
+import Card from "../components/Card";
 
 function App() {
   // Example locations (you can make this dynamic)
@@ -40,7 +41,7 @@ function App() {
       >
         <Map locations={locations} />
       </div>
-
+      <Card />
       <Footer />
       <Dashboard />
 
