@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignIn = ({ onClose }) => {
+const SignIn = ({ onClose, onSwitchToSignUp }) => {
   return (
     <>
     <div className="fixed inset-0 z-40 backdrop-blur-[2px] bg-white/10"></div>
@@ -12,7 +12,7 @@ const SignIn = ({ onClose }) => {
           onClick={onClose}
           className="absolute top-4 right-4 text-2xl text-gray-400 hover:text-gray-600"
         >
-          😫
+          <img src="./cross.jpeg" alt="" className="w-4 h-4" />
         </button>
 
         {/* Logo & Title */}
@@ -63,10 +63,13 @@ const SignIn = ({ onClose }) => {
 
         {/* Sign Up Link */}
         <div className="text-center">
-          <a href="#" className="text-indigo-600 hover:underline font-medium">
-            Create a new account
-          </a>
-        </div>
+        <button
+          onClick={onSwitchToSignUp}
+          className="text-indigo-600 hover:underline font-medium"
+        >
+          Create a new account
+        </button>
+      </div>
       </div>
     </div>
     </>

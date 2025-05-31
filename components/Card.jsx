@@ -5,9 +5,9 @@ const Card = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-      <div className="bg-white shadow-lg border border-gray-200 w-full flex flex-col md:flex-row">
+      <div className="bg-white shadow-lg border border-gray-200 w-full flex flex-col md:flex-row rounded-lg">
         {/* Image */}
-        <div className="w-full md:w-[400px] flex-shrink-0">
+        <div className="w-full md:w-[400px] flex-shrink-0 ">
           <img
             src="./picture.png" 
             alt="Modern house"
@@ -16,21 +16,30 @@ const Card = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
+        <div className="flex-1 p-6 md:p-8 flex flex-col justify-start">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
               Modern house in the heart of the city 
             </h2>
+            
             <p className="text-gray-600 text-base md:text-lg mb-4">
               A beautiful space perfect for a weekend getaway with modern furniture
               and natural light.
             </p>
+            <div className="flex items-center -ml-4 "> 
+            <img src="./location.jpeg" alt="" className="w-8 h-8 rounded-full mb-2 lg:h-12 lg:w-12 ml-2 "/>
+            <p className="text-gray-600 text-base md:text-lg mb-2 ">
+              Location: 123 Main St, Anytown, USA
+            </p>
+            </div>
+            
+
           </div>
 
           <div className="space-y-4">
             <button
               onClick={() => setShowDetails(!showDetails)}
-              className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              className="text-blue-600 hover:text-blue-800 font-medium transition-colors lg:mt-15"
             >
               {showDetails ? "Hide Details" : "View Details"}
             </button>
