@@ -9,6 +9,8 @@ import Dashboard from "../components/dashboard";
 import SignIn from "../components/SignIn";
 import SignUpModal from "../components/SignUpModal";
 import Card from "../components/Card";
+import Subscription from "../components/Subscription";
+import Payment from "../components/Payment";
 
 function App() {
   // Example locations
@@ -57,6 +59,8 @@ function App() {
       <Card />
       <Footer />
       <Dashboard />
+      <Subscription />
+      <Payment />
     </>
   );
 }
