@@ -10,6 +10,7 @@ import SignIn from "../components/SignIn";
 import SignUpModal from "../components/SignUpModal";
 import Card from "../components/Card";
 import Subscription from "../components/Subscription";
+import Payment from "../components/Payment";
 
 function App() {
   // Example locations
@@ -59,6 +60,7 @@ function App() {
       <Footer />
       <Dashboard />
       <Subscription />
+      <Payment />
     </>
   );
 }
