@@ -6,9 +6,11 @@ import SearchSection from "../components/Search";
 import Map from "../components/Map";
 import Footer from "../components/Footer";
 import Dashboard from "../components/dashboard";
-import SignIn from "../components/SignIn";
+import Login from "../components/LogIn";
 import SignUpModal from "../components/SignUpModal";
 import Card from "../components/Card";
+import Subscription from "../components/Subscription";
+import Payment from "../components/Payment";
 
 function App() {
   // Example locations
@@ -36,7 +38,7 @@ function App() {
         />
       )}
       {activeModal === "signin" && (
-        <SignIn
+        <Login
           onClose={closeModal}
           onSwitchToSignUp={() => setActiveModal("signup")}
         />
@@ -54,9 +56,11 @@ function App() {
       >
         <Map locations={locations} />
       </div>
-      <Card />
-      <Footer />
+      {/* <Card /> */}
       <Dashboard />
+      <Subscription />
+      <Payment />
+      <Footer />
     </>
   );
 }
