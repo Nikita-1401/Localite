@@ -10,6 +10,8 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
 
   const handleChange = (e) => {
     const {name, value} = e.target;
+    console.log(name, value);
+    
     const copyLoginData = {...LoginData};
     copyLoginData[name] = value;
     setLoginData(copyLoginData);
@@ -24,7 +26,7 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-2xl text-gray-400 hover:text-gray-600"
+            className="absolute top-4 right-4 text-2xl text-gray-400 hover:text-gray-600 cursor-pointer"
           >
             <img src="./cross.jpeg" alt="Close" className="w-4 h-4" />
           </button>
@@ -39,18 +41,24 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
             {/* Email Input */}
             <div className="mb-4">
               <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            />
-          </div>
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+                value={LoginData.email}
+              />
+            </div>
 
           {/* Password Input with Eye Toggle */}
           <div className="mb-2 relative">
             <input
+              name="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 pr-10"
+              onChange={handleChange}
+              value={LoginData.password}
             />
             <button
               type="button"
@@ -69,7 +77,7 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
 
           {/* Sign In Button */}
           <div className="mb-6">
-            <button className="w-full py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition duration-200">
+            <button className="w-full py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition duration-200 cursor-pointer">
               Sign In
             </button>
           </div>
@@ -88,7 +96,7 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
           <div className="text-center">
             <button
               onClick={onSwitchToSignUp}
-              className="text-indigo-600 hover:underline font-medium"
+              className="text-indigo-600 hover:underline font-medium cursor-pointer"
             >
               Create a new account
             </button>
