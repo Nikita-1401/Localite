@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react'; // Optional: use react-icons instead
 
-const SignIn = ({ onClose, onSwitchToSignUp }) => {
+const Login = ({ onClose, onSwitchToSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [LoginData, setLoginData] = useState({
     email: "",
@@ -15,6 +15,46 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
     const copyLoginData = {...LoginData};
     copyLoginData[name] = value;
     setLoginData(copyLoginData);
+  }
+
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+    console.log(LoginData);
+    const {email,password} = LoginData;
+    if(!email || !password){
+      alert("Please enter email and password");
+      return;
+    }
+    try {
+      const url = "http://localhost:5000/api/auth/login";
+      // const response = await axios.post(url, {email,password});
+      const response = await fetch(url,{
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(LoginData)
+      });
+      const data = await response.json();
+      console.log(data);
+      const {success, message, jwtToken, name, error } = data;
+      if(success){
+        localStorage.setItem("Token", jwtToken);
+        localStorage.setItem("LoggedInUser",name);
+
+        // {/*Redirection after Login*/}
+        alert(message);
+      }else if(error){
+        alert(error);
+      }else if(!success){
+        alert(message);
+      }
+      console.log(data);
+      
+    } catch (err) {
+      alert("Error logging in");
+    }
+    
   }
 
   return (
@@ -37,7 +77,7 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
             <h2 className="text-2xl font-semibold text-gray-800">Sign in to your account</h2>
           </div>
 
-          <form action="">
+          <form onSubmit={handleLogIn}>
             {/* Email Input */}
             <div className="mb-4">
               <input
@@ -107,4 +147,4 @@ const SignIn = ({ onClose, onSwitchToSignUp }) => {
   );
 };
 
-export default SignIn;
+export default Login;

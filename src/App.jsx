@@ -6,7 +6,7 @@ import SearchSection from "../components/Search";
 import Map from "../components/Map";
 import Footer from "../components/Footer";
 import Dashboard from "../components/dashboard";
-import SignIn from "../components/SignIn";
+import Login from "../components/LogIn";
 import SignUpModal from "../components/SignUpModal";
 import Card from "../components/Card";
 import Subscription from "../components/Subscription";
@@ -38,7 +38,7 @@ function App() {
         />
       )}
       {activeModal === "signin" && (
-        <SignIn
+        <Login
           onClose={closeModal}
           onSwitchToSignUp={() => setActiveModal("signup")}
         />
