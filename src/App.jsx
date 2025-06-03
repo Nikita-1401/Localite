@@ -56,7 +56,7 @@ function App() {
       >
         <Map locations={locations} />
       </div>
-      <Card />
+      {/* <Card /> */}
       <Dashboard />
       <Subscription />
       <Payment />
