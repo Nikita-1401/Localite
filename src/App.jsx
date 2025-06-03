@@ -57,10 +57,10 @@ function App() {
         <Map locations={locations} />
       </div>
       <Card />
-      <Footer />
       <Dashboard />
       <Subscription />
       <Payment />
+      <Footer />
     </>
   );
 }
