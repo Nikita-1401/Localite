@@ -24,13 +24,13 @@ const Subscription = () => {
            <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>This website can make your tour easy</p>
            </div>
            <div className='flex items-center gap-2'>
-           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>This will increase your profile views</p>
+           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>This will give you better exploring</p>
            </div>
            <div className='flex items-center gap-2'>
-           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>This will increase your profile views</p>
+           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>It will help you to find the best place</p>
            </div>
            <div className='flex items-center gap-2'>
-           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>This will increase your profile view</p>
+           <img src="./check.jpg" alt="" className='w-10 h-10' /><p className='w-[90%]'>Grow your popularity in your locality</p>
            </div>
            </div>
            <button className='bg-black text-white px-4 py-2 rounded-md w-1/2 mx-auto mt-4 cursor-pointer'>Subscribe</button>
