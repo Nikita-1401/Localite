@@ -13,7 +13,7 @@ const Footer = () => {
           </p>
           <p className='mb-3 flex items-center gap-3'>
             <img src="/phone.jpeg" alt="phone" className='rounded-full h-7 w-7' />
-            +91 6203738398
+            +91 620325****
           </p>
           <p className='mb-4 flex items-center gap-3'>
             <img src="/gmail.jpeg" alt="email" className='rounded-full h-7 w-7' />
