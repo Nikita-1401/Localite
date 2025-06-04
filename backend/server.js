@@ -6,17 +6,23 @@ import mongoRouter from "./routes/mongo.js";
 import cors from "cors";
 import mongoose from "mongoose";
 import userSchema from "./lib/Schema.js";
+import bodyParser from "body-parser";
+import AuthRouter from "./routes/AuthRouter.js";
 
 const app = express();
 dotenv.config();
 
+app.use(bodyParser.json());
 app.use(cors());
+app.use('/api/auth', AuthRouter);
+
 
 //connect to database
 connectDB();
 
 //middleware
 app.use(express.json());
+
 
 //server port
 const port = process.env.PORT || 5000;
@@ -42,5 +48,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-
