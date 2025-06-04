@@ -2,44 +2,55 @@ import React from 'react';
 
 const Subscription = () => {
   return (
-    <>
-      <div className="min-h-screen bg-gray-50 p-4 bg-[url('/nature/ocean.jpg')] bg-cover bg-center inset-0">
-        <div className="logo flex items-center gap-2 mb-4 md:mb-8">
-          <img src="/logo.jpeg" alt="logo" className="w-12 h-12 md:w-20 md:h-20 rounded-full" />
-          <h1 className="text-2xl md:text-5xl font-bold text-gray-800">Localite</h1>
+    <div className="min-h-screen bg-gray-50 bg-[url('/nature/ocean.jpg')] bg-cover bg-center p-4 flex flex-col">
+      {/* Header with Logo and Title */}
+      <div className="flex items-center gap-4 mb-6 md:mb-10">
+        <img src="/logo.jpeg" alt="logo" className="w-12 h-12 md:w-20 md:h-20 rounded-full" />
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-800">Localite</h1>
+      </div>
+
+      {/* Grid Section */}
+      <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        {/* Left Text Content */}
+        <div className="flex flex-col justify-center px-2 md:px-8 text-center md:text-left">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            One Subscription. Endless Discoveries. Stronger Local Tourism.
+          </h2>
+          <p className="text-lg md:text-xl font-medium mt-3">
+            Discover Hidden Gems. Empower Local Communities.
+          </p>
+          <p className="text-lg md:text-xl font-medium">
+            Find More Than Places — Uplift the People Behind Them.
+          </p>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-          <div className='flex flex-col items-start justify-center mx-auto mt-4 md:mt-10 px-4'>
-            <h1 className='text-3xl md:text-4xl font-bold text-center md:text-left'>One Subscription. Endless Discoveries. Stronger Local Tourism.</h1>
-            <p className='text-lg md:text-xl font-semibold mt-2 text-center md:text-left'>Discover Hidden Gems. Empower Local Communities.</p>
-            <p className='text-lg md:text-xl font-semibold text-center md:text-left'>Find More Than Places — Uplift the People Behind Them.</p>
+
+        {/* Right Subscription Card */}
+        <div className="w-full max-w-md bg-white rounded-xl p-6 mx-auto flex flex-col items-center shadow-lg">
+          <p className="text-xl md:text-2xl font-semibold">Subscribe For</p>
+          <h1 className="text-3xl md:text-5xl font-bold text-violet-700">₹29/month</h1>
+
+          {/* Benefits */}
+          <div className="w-full mt-4 flex flex-col gap-3">
+            {[
+              "This website can make your tour easy",
+              "This will increase your profile views",
+              "Get more exposure among tourists",
+              "Direct support to your local listings",
+            ].map((text, idx) => (
+              <div key={idx} className="flex items-start gap-3">
+                <img src="/check.jpg" alt="check" className="w-6 h-6 md:w-8 md:h-8 mt-1" />
+                <p className="text-sm md:text-base">{text}</p>
+              </div>
+            ))}
           </div>
-          <div className='w-full md:w-1/2 h-[40vh] bg-white flex flex-col items-center mt-4 md:mt-35 mx-auto rounded-lg p-4 md:p-6 lg:mt-2 lg:h-auto'>
-            <p className='text-xl md:text-2xl font-semibold mt-2'>Subscribe For</p>
-            <h1 className='text-3xl md:text-5xl font-bold'>₹29/month</h1>
-            <div className='flex flex-col w-full mt-4'>
-              <div className='flex items-center gap-2 mb-2'>
-                <img src="./check.jpg" alt="" className='w-8 h-8 md:w-10 md:h-10' />
-                <p className='text-sm md:text-base w-[90%]'>This website can make your tour easy</p>
-              </div>
-              <div className='flex items-center gap-2 mb-2'>
-                <img src="./check.jpg" alt="" className='w-8 h-8 md:w-10 md:h-10' />
-                <p className='text-sm md:text-base w-[90%]'>This will increase your profile views</p>
-              </div>
-              <div className='flex items-center gap-2 mb-2'>
-                <img src="./check.jpg" alt="" className='w-8 h-8 md:w-10 md:h-10' />
-                <p className='text-sm md:text-base w-[90%]'>This will increase your profile views</p>
-              </div>
-              <div className='flex items-center gap-2 mb-2'>
-                <img src="./check.jpg" alt="" className='w-8 h-8 md:w-10 md:h-10' />
-                <p className='text-sm md:text-base w-[90%]'>This will increase your profile view</p>
-              </div>
-            </div>
-            <button className='bg-black text-white px-6 py-3 rounded-md w-full md:w-1/2 mx-auto mt-4 cursor-pointer text-sm md:text-base hover:bg-gray-800 transition-colors'>Subscribe</button>
-          </div>
+
+          {/* Subscribe Button */}
+          <button className="mt-6 w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-base font-medium transition-colors">
+            Subscribe
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
