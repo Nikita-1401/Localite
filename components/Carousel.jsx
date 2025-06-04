@@ -7,8 +7,10 @@ const Carousel = () => {
     const images = [
         '/ranchi.avif',
         '/picture.png',
-        '/room.jpeg',
-        '/resto.jpeg'
+        '/room.webp',
+        '/resto.jpeg',
+        '/house.jpeg',
+        '/beach.jpeg'
     ];
 
     // Auto slide functionality
