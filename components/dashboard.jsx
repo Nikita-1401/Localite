@@ -86,9 +86,9 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen w-full bg-emerald-50 flex flex-col items-center p-6 overflow-auto">
       {/* Logo & Title */}
-      <div className="flex items-center gap-4 mb-8">
-        <img src="/favicon.png" alt="Logo" className="w-16 h-16" />
-        <h1 className="text-4xl font-bold text-emerald-900">Localite</h1>
+      <div className="flex items-center  gap-4 mb-8">
+        <img src="/favicon.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
+        <h1 className="text-4xl md:text-5xl font-bold text-emerald-900 md:mt-8">Localite</h1>
       </div>
 
       {/* Form Box */}
