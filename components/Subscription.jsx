@@ -14,9 +14,9 @@ const Subscription = () => {
             <p className='text-lg md:text-xl font-semibold mt-2 text-center md:text-left'>Discover Hidden Gems. Empower Local Communities.</p>
             <p className='text-lg md:text-xl font-semibold text-center md:text-left'>Find More Than Places — Uplift the People Behind Them.</p>
           </div>
-          <div className='w-full md:w-1/2 h-auto bg-white flex flex-col items-center mt-4 md:mt-35 mx-auto rounded-lg p-4 md:p-6'>
-            <p className='text-xl md:text-2xl font-semibold mt-2'>Monthly</p>
-            <h1 className='text-3xl md:text-5xl font-bold'>$10/month</h1>
+          <div className='w-full md:w-1/2 h-[40vh] bg-white flex flex-col items-center mt-4 md:mt-35 mx-auto rounded-lg p-4 md:p-6 lg:mt-2 lg:h-auto'>
+            <p className='text-xl md:text-2xl font-semibold mt-2'>Subscribe For</p>
+            <h1 className='text-3xl md:text-5xl font-bold'>₹29/month</h1>
             <div className='flex flex-col w-full mt-4'>
               <div className='flex items-center gap-2 mb-2'>
                 <img src="./check.jpg" alt="" className='w-8 h-8 md:w-10 md:h-10' />
