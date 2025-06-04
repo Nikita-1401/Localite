@@ -38,7 +38,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("/api/users/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify({ name: nameTrim, email: emailTrim, password }),
         headers: {
