@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const placeSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -31,4 +31,4 @@ const userSchema = new mongoose.Schema({
     collection: 'places'
 });
 
-export default mongoose.models.User || mongoose.model('User', userSchema);
+export default mongoose.models.Place || mongoose.model('Place', placeSchema);
