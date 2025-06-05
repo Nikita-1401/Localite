@@ -1,50 +1,46 @@
 import express from 'express';
 import uploadRouter from './routes/upload.js';
 import dotenv from "dotenv";
-import connectDB from './lib/db.js';
 import mongoRouter from "./routes/mongo.js";
 import cors from "cors";
 import mongoose from "mongoose";
-import userSchema from "./lib/Schema.js";
+import placeSchema from "./lib/Schema.js";
 import bodyParser from "body-parser";
 import AuthRouter from "./routes/AuthRouter.js";
+import connectDB from "./lib/db.js";
 
 const app = express();
 dotenv.config();
 
-app.use(bodyParser.json());
+// Middleware
 app.use(cors());
-app.use('/api/auth', AuthRouter);
+app.use(express.json());
+app.use(bodyParser.json());
 
-
-//connect to database
+// Connect to MongoDB
 connectDB();
 
-//middleware
-app.use(express.json());
+// Routes
+app.use('/api/auth', AuthRouter);
+app.use('/api/mongo', mongoRouter);
+app.use('/api/upload', uploadRouter);
 
-
-//server port
-const port = process.env.PORT || 5000;
-
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.log(err));
-
-//routes
-app.use("/api/mongo", mongoRouter);
-app.use("/api/upload", uploadRouter);
-
-app.get('/getUsers',(req, res) =>{
-    userSchema.find()
-    .then(users => res.json(users))
-    .catch(err => res.json(err))
-})
-
+// Basic route
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Get places route
+app.get('/getPlaces',(req, res) =>{
+    placeSchema.find()
+    .then(places => res.json(places))
+    .catch(err => {
+        console.error('Error fetching places:', err);
+        res.status(500).json({ error: 'Failed to fetch places' });
+    });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

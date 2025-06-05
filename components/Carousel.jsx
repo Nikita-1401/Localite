@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Carousel = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    
+
+    const navigate = useNavigate();
+
     // Add your images here
     const images = [
         '/ranchi.avif',
@@ -84,7 +88,9 @@ const Carousel = () => {
                     <p className="text-lg md:text-2xl text-emerald-700 font-semibold ">
                         Discover and connect with the best local service providers in your area
                     </p>
-                    <button className="bg-emerald-600 text-white px-8 py-3 rounded-full hover:bg-emerald-700 transition-colors font-bold ">
+                    <button 
+                    onClick={() => navigate('/listings')}
+                    className="bg-emerald-600 text-white px-8 py-3 rounded-full hover:bg-emerald-700 transition-colors font-bold ">
                         Get Started
                     </button>
                 </div>

@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -9,6 +11,13 @@ const Dashboard = () => {
     category: "",
     imageUrl: "",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const fileInputRef = useRef(null);
 
