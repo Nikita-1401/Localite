@@ -12,15 +12,18 @@ import connectDB from "./lib/db.js";
 const app = express();
 dotenv.config();
 
-// Middlewares
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
+// Connect to MongoDB
+connectDB();
+
 // Routes
-app.use("/api/mongo", mongoRouter);
-app.use("/api/upload", uploadRouter);
 app.use('/api/auth', AuthRouter);
+app.use('/api/mongo', mongoRouter);
+app.use('/api/upload', uploadRouter);
 
 // Basic route
 app.get('/', (req, res) => {
@@ -37,20 +40,7 @@ app.get('/getPlaces',(req, res) =>{
     });
 });
 
-// Server port
-const port = process.env.PORT || 5000;
-
-// Connect to database and start server
-const startServer = async () => {
-    try {
-        await connectDB();
-        app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
-        });
-    } catch (error) {
-        console.error('Failed to start server:', error);
-        process.exit(1);
-    }
-};
-
-startServer();
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
