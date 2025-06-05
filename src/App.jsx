@@ -72,7 +72,7 @@ function App() {
                 }}>
                   <Map locations={locations} />
                 </div>
-                <Card />
+                {/* <Card /> */}
                 <Subscription />
                 <Payment />
               </>
@@ -82,6 +82,7 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
+                <Card/>
                 <Dashboard />
               </ProtectedRoute>
             }
