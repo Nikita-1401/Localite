@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -32,7 +34,20 @@ const Dashboard = () => {
   const handleFileUpload = async (e) => {
     e.preventDefault();
     const file = fileInputRef.current?.files[0];
-    if (!file) return alert("Please select a file first.");
+    if (!file) {
+      toast.error('Please select a file first', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    }
 
     const formData = new FormData();
     formData.append("file", file);
@@ -51,14 +66,44 @@ const Dashboard = () => {
           ...prev,
           imageUrl: result.url,
         }));
-        alert("File uploaded successfully!");
+        toast.success('File uploaded successfully!', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         fileInputRef.current.value = "";
       } else {
-        alert("Upload failed: no URL returned.");
+        toast.error('Upload failed: no URL returned', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     } catch (err) {
       console.error(err);
-      alert("Upload failed. Check console for details.");
+      toast.error('Upload failed. Please try again', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
@@ -75,7 +120,17 @@ const Dashboard = () => {
       if (!res.ok) throw new Error(`Submit failed with ${res.status}`);
       const result = await res.json();
       console.log(result);
-      alert("Data submitted successfully!");
+      toast.success('Data submitted successfully!', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
 
       setData({
         name: "",
@@ -88,12 +143,23 @@ const Dashboard = () => {
       fileInputRef.current.value = "";
     } catch (err) {
       console.error(err);
-      alert("Submit failed. Check console for details.");
+      toast.error('Submit failed. Please try again', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
   return (
     <div className="min-h-screen w-full bg-emerald-50 flex flex-col items-center p-6 overflow-auto">
+      <ToastContainer />
       {/* Logo & Title */}
       <div className="flex items-center  gap-4 mb-8">
         <img src="/favicon.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
@@ -103,10 +169,10 @@ const Dashboard = () => {
       {/* Form Box */}
       <div className="w-full max-w-3xl bg-white px-6 py-8 border border-emerald-400 rounded-lg shadow-lg flex flex-col gap-6">
         {[
-          { name: "name", placeholder: "Enter your name" },
-          { name: "description", placeholder: "Enter your description" },
-          { name: "landmark", placeholder: "Enter your landmark" },
-          { name: "location", placeholder: "Enter your location" },
+          { name: "name", placeholder: "Enter the name of the place" },
+          { name: "description", placeholder: "Enter the description of the place" },
+          { name: "landmark", placeholder: "Enter the landmark of the place" },
+          { name: "location", placeholder: "Enter the location of the place" },
         ].map(({ name, placeholder }) => (
           <input
             key={name}

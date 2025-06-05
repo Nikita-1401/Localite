@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react"; // You can use any icon library or image
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,11 +31,31 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     const emailTrim = email.trim();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error('Passwords do not match', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       return;
     }
     if (password === "" || emailTrim === "" || nameTrim === "" || confirmPassword === "") {
-      alert("Please fill all the fields");
+      toast.error('Please fill all the fields', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       return;
     }
     setIsLoading(true);
@@ -48,13 +70,45 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       const data = await response.json();
       const { success, message } = data;
       if (success) {
-        alert(message);
-        onClose();
+        toast.success(message, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        setTimeout(() => {
+          onClose();
+        }, 3000);
       } else {
-        alert(message);
+        toast.error(message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     } catch (error) {
-      alert("Error signing up");
+      toast.error('Error signing up', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -152,6 +206,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
           </p>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
