@@ -115,6 +115,7 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
+                <Card/>
                 <Dashboard />
               </ProtectedRoute>
             }
