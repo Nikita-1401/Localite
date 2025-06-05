@@ -22,4 +22,14 @@ router.post("/add", async (req, res) => {
   }
 });
 
+// Get all places
+router.get("/getPlaces", async (req, res) => {
+  try {
+    const places = await User.find();
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching places", error: error.message });
+  }
+});
+
 export default router;

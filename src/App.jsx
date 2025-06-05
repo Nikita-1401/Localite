@@ -36,12 +36,50 @@ function App() {
     return children;
   };
 
+  // Public Home component
+  const PublicHome = () => (
+    <>
+      <Carousel />
+      <SearchSection />
+      <div style={{
+        width: "100%",
+        maxWidth: "1200px",
+        margin: "50px auto",
+        padding: "0 1rem",
+      }}>
+        <Map locations={locations} />
+      </div>
+      <Subscription />
+      {/* <Payment /> */}
+    </>
+  );
+
+  // Protected Home component (after login)
+  const ProtectedHome = () => (
+    <>
+      <Carousel />
+      <SearchSection />
+      <div style={{
+        width: "100%",
+        maxWidth: "1200px",
+        margin: "50px auto",
+        padding: "0 1rem",
+      }}>
+        {/* <Map locations={locations} /> */}
+      </div>
+      <Card />
+      <Subscription />
+      {/* <Payment /> */}
+    </>
+  );
+
   return (
     <BrowserRouter>
       <div className="app">
         <Navbar
           onSignupClick={() => setActiveModal("signup")}
           onLoginClick={() => setActiveModal("signin")}
+          isAuthenticated={isAuthenticated()}
         />
 
         {activeModal === "signup" && (
@@ -58,24 +96,19 @@ function App() {
         )}
 
         <Routes>
+          {/* Public routes */}
+          <Route 
+            path="/" 
+            element={!isAuthenticated() ? <PublicHome /> : <Navigate to="/home" />} 
+          />
+
+          {/* Protected routes */}
           <Route
-            path="/"
+            path="/home"
             element={
-              <>
-                <Carousel />
-                <SearchSection />
-                <div style={{
-                  width: "100%",
-                  maxWidth: "1200px",
-                  margin: "50px auto",
-                  padding: "0 1rem",
-                }}>
-                  <Map locations={locations} />
-                </div>
-                <Card />
-                <Subscription />
-                <Payment />
-              </>
+              <ProtectedRoute>
+                <ProtectedHome />
+              </ProtectedRoute>
             }
           />
           <Route
@@ -83,6 +116,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/listings"
+            element={
+              <ProtectedRoute>
+                <Card />
               </ProtectedRoute>
             }
           />
