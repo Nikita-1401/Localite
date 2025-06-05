@@ -103,10 +103,10 @@ const Dashboard = () => {
       {/* Form Box */}
       <div className="w-full max-w-3xl bg-white px-6 py-8 border border-emerald-400 rounded-lg shadow-lg flex flex-col gap-6">
         {[
-          { name: "name", placeholder: "Enter your name" },
-          { name: "description", placeholder: "Enter your description" },
-          { name: "landmark", placeholder: "Enter your landmark" },
-          { name: "location", placeholder: "Enter your location" },
+          { name: "name", placeholder: "Enter the name of the place" },
+          { name: "description", placeholder: "Enter the description of the place" },
+          { name: "landmark", placeholder: "Enter the landmark of the place" },
+          { name: "location", placeholder: "Enter the location of the place" },
         ].map(({ name, placeholder }) => (
           <input
             key={name}
