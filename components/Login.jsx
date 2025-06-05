@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react'; // Optional: use react-icons instead
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onClose, onSwitchToSignUp }) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [LoginData, setLoginData] = useState({
     email: "",
@@ -37,16 +39,17 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       });
       const data = await response.json();
       console.log(data);
-      const {success, message, jwtToken, name, error } = data;
+      const {success, message, token, user } = data;
       if(success){
-        localStorage.setItem("Token", jwtToken);
-        localStorage.setItem("LoggedInUser",name);
+        localStorage.setItem("Token", token);
+        localStorage.setItem("LoggedInUser", user.name);
 
-        // {/*Redirection after Login*/}
+        if(data.redirectUrl){
+          navigate(data.redirectUrl);
+          onClose(); // Close the login modal after successful redirect
+        }
         alert(message);
-      }else if(error){
-        alert(error);
-      }else if(!success){
+      }else{
         alert(message);
       }
       console.log(data);
@@ -54,7 +57,6 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     } catch (err) {
       alert("Error logging in");
     }
-    
   }
 
   return (
@@ -117,7 +119,10 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
 
           {/* Sign In Button */}
           <div className="mb-6">
-            <button className="w-full py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition duration-200 cursor-pointer">
+            <button 
+            type="submit"
+            onClick={handleLogIn}
+            className="w-full py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition duration-200 cursor-pointer">
               Sign In
             </button>
           </div>
