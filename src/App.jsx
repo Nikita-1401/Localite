@@ -31,13 +31,13 @@ function App() {
         onLoginClick={() => setActiveModal("signin")}
       />
 
-      {activeModal === "signup" && (
+      { activeModal === "signup" && (
         <SignUpModal
           onClose={closeModal}
           onSwitchToSignIn={() => setActiveModal("signin")}
         />
       )}
-      {activeModal === "signin" && (
+      { activeModal === "signin" && (
         <Login
           onClose={closeModal}
           onSwitchToSignUp={() => setActiveModal("signup")}
