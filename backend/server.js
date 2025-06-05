@@ -40,6 +40,11 @@ app.get('/getPlaces',(req, res) =>{
     });
 });
 
+// Update CORS configuration
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:4173'], // Vite dev and preview ports
+  credentials: true
+}));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
