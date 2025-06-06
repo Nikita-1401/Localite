@@ -41,12 +41,14 @@ function App() {
     <>
       <Carousel />
       <SearchSection />
-      <div style={{
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "50px auto",
-        padding: "0 1rem",
-      }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "50px auto",
+          padding: "0 1rem",
+        }}
+      >
         <Map locations={locations} />
       </div>
       <Subscription />
@@ -59,12 +61,14 @@ function App() {
     <>
       <Carousel />
       <SearchSection />
-      <div style={{
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "50px auto",
-        padding: "0 1rem",
-      }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "50px auto",
+          padding: "0 1rem",
+        }}
+      >
         {/* <Map locations={locations} /> */}
       </div>
       <Card />
@@ -97,9 +101,11 @@ function App() {
 
         <Routes>
           {/* Public routes */}
-          <Route 
-            path="/" 
-            element={!isAuthenticated() ? <PublicHome /> : <Navigate to="/home" />} 
+          <Route
+            path="/"
+            element={
+              !isAuthenticated() ? <PublicHome /> : <Navigate to="/home" />
+            }
           />
 
           {/* Protected routes */}

@@ -50,7 +50,7 @@ const Payment = () => {
           <h2 className='text-gray-800 text-sm font-bold pt-4 flex justify-center'>Hey boys can you transfer me money</h2>
           <p className='text-gray-800 text-sm flex justify-center'>you can click here to transfer money </p>
           <div className="flex justify-center mt-3">
-            <button className="py-2 bg-cyan-600 text-white rounded-full hover:bg-gray-800 transition-colors text-base font-medium w-full max-w-[300px] flex items-center justify-center">
+            <button className="py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition-colors text-base font-medium w-full max-w-[300px] flex items-center justify-center">
               Pay
             </button>
           </div>

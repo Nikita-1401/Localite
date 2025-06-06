@@ -35,11 +35,13 @@ const Dashboard = () => {
     e.preventDefault();
     const file = fileInputRef.current?.files[0];
     if (!file) {
+ 
       toast.error("Please select a file first.", {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
+ 
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
@@ -68,8 +70,7 @@ const Dashboard = () => {
         }));
         toast.success("File uploaded successfully!", {
           position: "top-center",
-          autoclose: 2000,
-
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -82,8 +83,7 @@ const Dashboard = () => {
       } else {
         toast.error("Upload failed: no URL returned.", {
           position: "top-center",
-          autoclose: 2000,
-
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -97,8 +97,7 @@ const Dashboard = () => {
       console.error(err);
       toast.error("Upload failed. Check console for details.", {
         position: "top-center",
-        autoclose: 2000,
-
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -125,8 +124,7 @@ const Dashboard = () => {
       console.log(result);
       toast.success("Data submitted successfully!", {
         position: "top-center",
-        autoclose: 2000,
-
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -149,8 +147,7 @@ const Dashboard = () => {
       console.error(err);
       toast.error("Submit failed. Check console for details.", {
         position: "top-center",
-        autoclose: 2000,
-
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -174,10 +171,10 @@ const Dashboard = () => {
       {/* Form Box */}
       <div className="w-full max-w-3xl bg-white px-6 py-8 border border-emerald-400 rounded-lg shadow-lg flex flex-col gap-6">
         {[
-          { name: "name", placeholder: "Enter your name" },
-          { name: "description", placeholder: "Enter your description" },
-          { name: "landmark", placeholder: "Enter your landmark" },
-          { name: "location", placeholder: "Enter your location" },
+          { name: "name", placeholder: "Enter the name of the place" },
+          { name: "description", placeholder: "Enter the description of the place" },
+          { name: "landmark", placeholder: "Enter the landmark of the place" },
+          { name: "location", placeholder: "Enter the location of the place" },
         ].map(({ name, placeholder }) => (
           <input
             key={name}
