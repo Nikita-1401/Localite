@@ -58,7 +58,8 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
   
         toast.success(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
+
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -77,7 +78,8 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       } else {
         toast.error(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
+
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -92,7 +94,8 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     } catch (err) {
       toast.error("Error logging in", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -37,7 +37,7 @@ const Dashboard = () => {
     if (!file) {
       toast.error("Please select a file first.", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -68,7 +68,8 @@ const Dashboard = () => {
         }));
         toast.success("File uploaded successfully!", {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
+
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -81,7 +82,8 @@ const Dashboard = () => {
       } else {
         toast.error("Upload failed: no URL returned.", {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
+
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -95,7 +97,8 @@ const Dashboard = () => {
       console.error(err);
       toast.error("Upload failed. Check console for details.", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -122,7 +125,8 @@ const Dashboard = () => {
       console.log(result);
       toast.success("Data submitted successfully!", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -145,7 +149,8 @@ const Dashboard = () => {
       console.error(err);
       toast.error("Submit failed. Check console for details.", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

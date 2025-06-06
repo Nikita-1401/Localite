@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
@@ -33,7 +33,8 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -47,7 +48,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     if (password === "" || emailTrim === "" || nameTrim === "" || confirmPassword === "") {
       toast.error("Please fill all the fields", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -72,7 +73,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       if (success) {
         toast.success(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -83,11 +84,11 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         });
         setTimeout(() => {
           onClose();
-        }, 3000);
+        }, 2000);
       } else {
         toast.error(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoclose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -100,7 +101,8 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     } catch (error) {
       toast.error("Error signing up", {
         position: "top-center",
-        autoClose: 3000,
+        autoclose: 2000,
+
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
