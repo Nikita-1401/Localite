@@ -31,14 +31,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
     const emailTrim = email.trim();
 
     if (password !== confirmPassword) {
-<<<<<<< HEAD
-      toast.error("Passwords do not match", {
-        position: "top-center",
-        autoclose: 2000,
-
-        hideProgressBar: false,
-        closeOnClick: true,
-=======
  
       toast.error("Passwords do not match", {
         position: "top-center",
@@ -46,7 +38,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         hideProgressBar: false,
         closeOnClick: true,
  
->>>>>>> nikita
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
@@ -56,13 +47,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       return;
     }
     if (password === "" || emailTrim === "" || nameTrim === "" || confirmPassword === "") {
-<<<<<<< HEAD
-      toast.error("Please fill all the fields", {
-        position: "top-center",
-        autoclose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-=======
  
       toast.error("Please fill all the fields", {
         position: "top-center",
@@ -70,7 +54,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         hideProgressBar: false,
         closeOnClick: true,
  
->>>>>>> nikita
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
@@ -93,17 +76,11 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       if (success) {
         toast.success(message, {
           position: "top-center",
-<<<<<<< HEAD
-          autoclose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-=======
  
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
  
->>>>>>> nikita
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
@@ -112,15 +89,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         });
         setTimeout(() => {
           onClose();
-<<<<<<< HEAD
-        }, 2000);
-      } else {
-        toast.error(message, {
-          position: "top-center",
-          autoclose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-=======
         }, 3000);
       } else {
         toast.error(message, {
@@ -130,7 +98,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
           closeOnClick: true,
  
->>>>>>> nikita
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
@@ -139,14 +106,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         });
       }
     } catch (error) {
-<<<<<<< HEAD
-      toast.error("Error signing up", {
-        position: "top-center",
-        autoclose: 2000,
-
-        hideProgressBar: false,
-        closeOnClick: true,
-=======
  
       toast.error("Error signing up", {
         position: "top-center",
@@ -154,7 +113,6 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         hideProgressBar: false,
         closeOnClick: true,
  
->>>>>>> nikita
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
