@@ -35,11 +35,13 @@ const Dashboard = () => {
     e.preventDefault();
     const file = fileInputRef.current?.files[0];
     if (!file) {
+ 
       toast.error("Please select a file first.", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
+ 
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
@@ -162,17 +164,17 @@ const Dashboard = () => {
       <ToastContainer />
       {/* Logo & Title */}
       <div className="flex items-center  gap-4 mb-8">
-        <img src="/favicon.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
+        <img src="/favi.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
         <h1 className="text-4xl md:text-5xl font-bold text-emerald-900 md:mt-8">Localite</h1>
       </div>
 
       {/* Form Box */}
       <div className="w-full max-w-3xl bg-white px-6 py-8 border border-emerald-400 rounded-lg shadow-lg flex flex-col gap-6">
         {[
-          { name: "name", placeholder: "Enter your name" },
-          { name: "description", placeholder: "Enter your description" },
-          { name: "landmark", placeholder: "Enter your landmark" },
-          { name: "location", placeholder: "Enter your location" },
+          { name: "name", placeholder: "Enter the name of the place" },
+          { name: "description", placeholder: "Enter the description of the place" },
+          { name: "landmark", placeholder: "Enter the landmark of the place" },
+          { name: "location", placeholder: "Enter the location of the place" },
         ].map(({ name, placeholder }) => (
           <input
             key={name}

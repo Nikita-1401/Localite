@@ -52,21 +52,37 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       const data = await response.json();
       console.log(data);
       const {success, message, token, user } = data;
+      // toast.success('Login successful', {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: false,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   transition: Bounce,
+      //   });
       if(success){
         localStorage.setItem("Token", token);
         localStorage.setItem("LoggedInUser", user.name);
+   
+ 
   
         toast.success(message, {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
+
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "light",
           transition: Bounce,
         });
+ 
+
         
         if(data.redirectUrl){
           setTimeout(() => {
@@ -80,12 +96,15 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
+
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "light",
           transition: Bounce,
+
         });
+
       }
       console.log(data);
       
@@ -104,10 +123,24 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     }
   }
 
+  // toast.success('Login successful', {
+  //   position: "top-center",
+  //   autoClose: 5000,
+  //   hideProgressBar: false,
+  //   closeOnClick: false,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  //   transition: Bounce,
+  //   });
+
   return (
     <>
     <ToastContainer />
+ 
       {/* Backdrop */}
+ 
       <div className="fixed inset-0 z-40 backdrop-blur-[2px] bg-white/10"></div>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="relative w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
