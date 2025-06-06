@@ -66,7 +66,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       if(success){
         localStorage.setItem("Token", token);
         localStorage.setItem("LoggedInUser", user.name);
-
+   
  
   
         toast.success(message, {
@@ -75,6 +75,17 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
           hideProgressBar: false,
           closeOnClick: true,
 
+<<<<<<< HEAD
+ 
+  
+        toast.success(message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+
+=======
+>>>>>>> satyam
           pauseOnHover: true,
           draggable: true,
           progress: undefined,

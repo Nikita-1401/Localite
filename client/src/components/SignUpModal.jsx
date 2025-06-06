@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",

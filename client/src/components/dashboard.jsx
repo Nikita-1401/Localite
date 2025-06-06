@@ -164,7 +164,7 @@ const Dashboard = () => {
       <ToastContainer />
       {/* Logo & Title */}
       <div className="flex items-center  gap-4 mb-8">
-        <img src="/favicon.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
+        <img src="/favi.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
         <h1 className="text-4xl md:text-5xl font-bold text-emerald-900 md:mt-8">Localite</h1>
       </div>
 

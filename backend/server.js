@@ -8,7 +8,8 @@ import placeSchema from "./lib/Schema.js";
 import bodyParser from "body-parser";
 import AuthRouter from "./routes/AuthRouter.js";
 import connectDB from "./lib/db.js";
-import Razorpay from "razorpay"; // Added for Razorpay
+import Razorpay from "razorpay";
+import crypto from 'crypto';
 
 const app = express();
 dotenv.config();
@@ -20,7 +21,10 @@ const razorpay = new Razorpay({
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -35,24 +39,50 @@ app.use('/api/upload', uploadRouter);
 // Razorpay Subscription Route
 app.post("/api/subscribe", async (req, res) => {
     try {
+        // Replace this with your actual Plan ID from Razorpay dashboard
+        const planId = "plan_Lv6rHa6sZXXXXXXXXX";
+
         const subscription = await razorpay.subscriptions.create({
-            plan_id: "plan_XXXXXXXXXXXXXX", // 🔁 Replace with your actual Plan ID
+            plan_id: planId,
             customer_notify: 1,
-            total_count: 12,
+            total_count: 12
         });
+
         res.json({ id: subscription.id });
     } catch (error) {
         console.error("Subscription creation failed:", error);
-        res.status(500).json({ error: "Subscription failed" });
+        res.status(500).json({ error: "Subscription failed", details: error.message });
     }
 });
 
-// Default route
+// Payment Verification Route
+app.post("/api/payment/verify", async (req, res) => {
+    try {
+        const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } = req.body;
+
+        const generated_signature = crypto
+            .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+            .update(`${razorpay_payment_id}|${razorpay_subscription_id}`)
+            .digest('hex');
+
+        if (generated_signature === razorpay_signature) {
+            // Update subscription in DB if needed
+            res.json({ success: true, message: "Payment verified successfully" });
+        } else {
+            res.status(400).json({ success: false, message: "Payment verification failed" });
+        }
+    } catch (error) {
+        console.error("Payment verification failed:", error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
+// Default Route
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-// Get places route
+// Get places
 app.get('/getPlaces', (req, res) => {
     placeSchema.find()
         .then(places => res.json(places))

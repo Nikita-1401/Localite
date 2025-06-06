@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+// Add a subscription field to your User schema
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -14,6 +15,14 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    subscription: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subscription'
+    },
+    isSubscribed: {
+        type: Boolean,
+        default: false
     }
 });
 
