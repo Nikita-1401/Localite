@@ -1,6 +1,43 @@
 import React from 'react';
 
 const Subscription = () => {
+  const handleSubscribe = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          plan: "monthly", // or whatever plan details you need
+          amount: 1000,    // amount in smallest currency unit
+          currency: "INR"  // currency code
+        })
+      });
+
+      const data = await response.json();
+
+      const options = {
+        key: "AboiBTdI8FTSoY", // Replace this with your actual Razorpay Key ID
+        subscription_id: data.id,
+        name: "Localite",
+        description: "Monthly Subscription Plan",
+        theme: {
+          color: "#7c3aed",
+        },
+        handler: function (res) {
+          alert(`Subscription successful! ID: ${res.razorpay_subscription_id}`);
+        },
+      };
+
+      const razor = new window.Razorpay(options);
+      razor.open();
+    } catch (error) {
+      console.error("Subscription failed", error);
+      alert("Subscription failed. Please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 bg-[url('/nature/ocean.jpg')] bg-cover bg-center p-4 flex flex-col">
       {/* Header with Logo and Title */}
@@ -45,7 +82,10 @@ const Subscription = () => {
           </div>
 
           {/* Subscribe Button */}
-          <button className="mt-6 w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-base font-medium transition-colors">
+          <button
+            onClick={handleSubscribe}
+            className="mt-6 w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-base font-medium transition-colors"
+          >
             Subscribe
           </button>
         </div>
