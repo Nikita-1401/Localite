@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Subscription = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleSubscribe = async () => {
+    setLoading(true);
     try {
       const response = await fetch("http://localhost:5000/api/subscribe", {
         method: "POST",
@@ -9,24 +14,83 @@ const Subscription = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          plan: "monthly", // or whatever plan details you need
-          amount: 1000,    // amount in smallest currency unit
-          currency: "INR"  // currency code
+          plan: "monthly",
+          amount: 2900,    // ₹29 in paise (smallest currency unit)
+          currency: "INR"
         })
       });
 
       const data = await response.json();
+      
+      if (!data.id) {
+        throw new Error("Failed to create subscription");
+      }
 
       const options = {
-        key: "AboiBTdI8FTSoY", // Replace this with your actual Razorpay Key ID
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Use environment variable
         subscription_id: data.id,
         name: "Localite",
         description: "Monthly Subscription Plan",
         theme: {
           color: "#7c3aed",
         },
-        handler: function (res) {
-          alert(`Subscription successful! ID: ${res.razorpay_subscription_id}`);
+        handler: async function (response) {
+          try {
+            // Verify the payment on your server
+            const verifyResponse = await fetch("http://localhost:5000/api/payment/verify", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_subscription_id: response.razorpay_subscription_id,
+                razorpay_signature: response.razorpay_signature
+              })
+            });
+            
+            const verifyData = await verifyResponse.json();
+            
+            if (verifyData.success) {
+              toast.success("Subscription successful!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+              });
+              // Update UI to show subscription status
+            } else {
+              toast.error("Payment verification failed", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+              });
+            }
+          } catch (error) {
+            console.error("Verification failed", error);
+            toast.error("Verification failed. Please contact support.", {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+            });
+          }
         },
       };
 
@@ -34,12 +98,25 @@ const Subscription = () => {
       razor.open();
     } catch (error) {
       console.error("Subscription failed", error);
-      alert("Subscription failed. Please try again.");
+      toast.error("Subscription failed. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 bg-[url('/nature/ocean.jpg')] bg-cover bg-center p-4 flex flex-col">
+      <ToastContainer />
       {/* Header with Logo and Title */}
       <div className="flex items-center gap-4 mb-6 md:mb-10">
         <img src="/logo.jpeg" alt="logo" className="w-12 h-12 md:w-20 md:h-20 rounded-full" />
@@ -84,9 +161,10 @@ const Subscription = () => {
           {/* Subscribe Button */}
           <button
             onClick={handleSubscribe}
-            className="mt-6 w-full bg-black hover:bg-gray-800 text-white py-3 rounded-md text-base font-medium transition-colors"
+            disabled={loading}
+            className={`mt-6 w-full ${loading ? 'bg-gray-500' : 'bg-black hover:bg-gray-800'} text-white py-3 rounded-md text-base font-medium transition-colors`}
           >
-            Subscribe
+            {loading ? 'Processing...' : 'Subscribe'}
           </button>
         </div>
       </div>
