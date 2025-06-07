@@ -1,6 +1,6 @@
 import express from 'express';
 import { LoginValidation, SignUPValidation } from '../middlewares/AuthValidation.js';
-import { signup, login } from '../controllers/Authcontroller.js';
+import { signup, login } from '../controllers/AuthController.js'; // Corrected capitalization
 
 const Router = express.Router();
 

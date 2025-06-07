@@ -18,11 +18,14 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "fs-extra": "^11.3.0",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.1",
     "multer": "^2.0.0",
     "multer-storage-cloudinary": "^4.0.0",
-    "react-router-dom": "^7.6.2"
+    "razorpay": "^2.9.6",
+    "react-router-dom": "^7.6.2",
+    "stripe": "^18.2.1"
   }
 }
