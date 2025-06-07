@@ -51,7 +51,7 @@ const Footer = () => {
               className='p-2 rounded-md border border-white text-black w-full sm:w-auto'
             />
             <button className='bg-purple-500 hover:bg-purple-600 text-white p-2 rounded-md w-full sm:w-auto'>
-              Subscribe
+              Subscribe 
             </button>
           </div>
         </div>

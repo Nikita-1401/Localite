@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -32,7 +34,22 @@ const Dashboard = () => {
   const handleFileUpload = async (e) => {
     e.preventDefault();
     const file = fileInputRef.current?.files[0];
-    if (!file) return alert("Please select a file first.");
+    if (!file) {
+ 
+      toast.error("Please select a file first.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+ 
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    }
 
     const formData = new FormData();
     formData.append("file", file);
@@ -51,14 +68,44 @@ const Dashboard = () => {
           ...prev,
           imageUrl: result.url,
         }));
-        alert("File uploaded successfully!");
+        toast.success("File uploaded successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         fileInputRef.current.value = "";
       } else {
-        alert("Upload failed: no URL returned.");
+        toast.error("Upload failed: no URL returned.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     } catch (err) {
       console.error(err);
-      alert("Upload failed. Check console for details.");
+      toast.error("Upload failed. Check console for details.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
@@ -75,7 +122,17 @@ const Dashboard = () => {
       if (!res.ok) throw new Error(`Submit failed with ${res.status}`);
       const result = await res.json();
       console.log(result);
-      alert("Data submitted successfully!");
+      toast.success("Data submitted successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
 
       setData({
         name: "",
@@ -88,15 +145,26 @@ const Dashboard = () => {
       fileInputRef.current.value = "";
     } catch (err) {
       console.error(err);
-      alert("Submit failed. Check console for details.");
+      toast.error("Submit failed. Check console for details.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
   return (
     <div className="min-h-screen w-full bg-emerald-50 flex flex-col items-center p-6 overflow-auto">
+      <ToastContainer />
       {/* Logo & Title */}
       <div className="flex items-center  gap-4 mb-8">
-        <img src="/favicon.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
+        <img src="/favi.png" alt="Logo" className="w-16 h-16 md:w-20 md:h-20" />
         <h1 className="text-4xl md:text-5xl font-bold text-emerald-900 md:mt-8">Localite</h1>
       </div>
 

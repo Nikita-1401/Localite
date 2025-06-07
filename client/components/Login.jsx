@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react'; // Optional: use react-icons instead
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ onClose, onSwitchToSignUp }) => {
   const navigate = useNavigate();
@@ -24,7 +26,17 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     console.log(LoginData);
     const {email,password} = LoginData;
     if(!email || !password){
-      alert("Please enter email and password");
+      toast.error('please enter email and password', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       return;
     }
     try {
@@ -40,27 +52,95 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       const data = await response.json();
       console.log(data);
       const {success, message, token, user } = data;
+      // toast.success('Login successful', {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: false,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   transition: Bounce,
+      //   });
       if(success){
         localStorage.setItem("Token", token);
         localStorage.setItem("LoggedInUser", user.name);
+   
+ 
+  
+        toast.success(message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
 
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+ 
+
+        
         if(data.redirectUrl){
-          navigate(data.redirectUrl);
-          onClose(); // Close the login modal after successful redirect
+          setTimeout(() => {
+            navigate(data.redirectUrl);
+            onClose(); // Close the login modal after successful redirect
+          }, 3000);
         }
-        alert(message);
-      }else{
-        alert(message);
+      } else {
+        toast.error(message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+
+        });
+
       }
       console.log(data);
       
     } catch (err) {
-      alert("Error logging in");
+      toast.error("Error logging in", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   }
 
+  // toast.success('Login successful', {
+  //   position: "top-center",
+  //   autoClose: 5000,
+  //   hideProgressBar: false,
+  //   closeOnClick: false,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  //   transition: Bounce,
+  //   });
+
   return (
     <>
+    <ToastContainer />
+ 
+      {/* Backdrop */}
+ 
       <div className="fixed inset-0 z-40 backdrop-blur-[2px] bg-white/10"></div>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="relative w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
