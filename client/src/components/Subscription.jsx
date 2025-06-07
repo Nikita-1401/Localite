@@ -10,67 +10,40 @@ const Subscription = () => {
     try {
       const response = await fetch("http://localhost:5000/api/subscribe", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          plan: "monthly"
-        })
+          amount: 2900,
+          currency: "INR",
+        }),
       });
 
       const data = await response.json();
-      console.log(data);
-      
-      if (!data.id) {
-        throw new Error("Failed to create subscription");
-      }
+      if (!data.orderId) throw new Error("Order creation failed");
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-        subscription_id: data.id,
+        amount: data.amount,
+        currency: data.currency,
         name: "Localite",
-        description: "Monthly Subscription Plan",
-        theme: {
-          color: "#7c3aed",
-        },
+        description: "Monthly Support",
+        order_id: data.orderId,
+        theme: { color: "#7c3aed" },
         handler: async function (response) {
-          try {
-            const verifyResponse = await fetch("http://localhost:5000/api/payment/verify", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_subscription_id: response.razorpay_subscription_id,
-                razorpay_signature: response.razorpay_signature
-              })
-            });
+          const verifyResponse = await fetch("http://localhost:5000/api/payment/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            }),
+          });
 
-            const verifyData = await verifyResponse.json();
-
-            if (verifyData.success) {
-              toast.success("Subscription successful!", {
-                position: "top-center",
-                autoClose: 3000,
-                theme: "light",
-                transition: Bounce,
-              });
-            } else {
-              toast.error("Payment verification failed", {
-                position: "top-center",
-                autoClose: 3000,
-                theme: "light",
-                transition: Bounce,
-              });
-            }
-          } catch (error) {
-            toast.error("Verification failed. Please contact support.", {
-              position: "top-center",
-              autoClose: 3000,
-              theme: "light",
-              transition: Bounce,
-            });
+          const verifyData = await verifyResponse.json();
+          if (verifyData.success) {
+            toast.success("Payment successful!", { position: "top-center", transition: Bounce });
+          } else {
+            toast.error("Verification failed!", { position: "top-center", transition: Bounce });
           }
         },
       };
@@ -78,12 +51,8 @@ const Subscription = () => {
       const razor = new window.Razorpay(options);
       razor.open();
     } catch (error) {
-      toast.error("Subscription failed. Please try again.", {
-        position: "top-center",
-        autoClose: 3000,
-        theme: "light",
-        transition: Bounce,
-      });
+      console.error("Subscription error:", error);
+      toast.error("Payment failed. Try again.", { position: "top-center", transition: Bounce });
     } finally {
       setLoading(false);
     }
@@ -131,7 +100,9 @@ const Subscription = () => {
           <button
             onClick={handleSubscribe}
             disabled={loading}
-            className={`mt-6 w-full ${loading ? 'bg-gray-500' : 'bg-black hover:bg-gray-800'} text-white py-3 rounded-md text-base font-medium transition-colors`}
+            className={`mt-6 w-full ${
+              loading ? 'bg-gray-500' : 'bg-black hover:bg-gray-800'
+            } text-white py-3 rounded-md text-base font-medium transition-colors`}
           >
             {loading ? 'Processing...' : 'Subscribe'}
           </button>
