@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Carousel from "../components/Carousel";
-import SearchSection from "../components/Search";
-import Map from "../components/Map";
-import Footer from "../components/Footer";
-import Dashboard from "../components/dashboard";
-import Login from "../components/LogIn";
-import SignUpModal from "../components/SignUpModal";
-import Card from "../components/Card";
-import Subscription from "../components/Subscription";
+import Navbar from "./components/Navbar";
+import Carousel from "./components/Carousel";
+import SearchSection from "./components/Search";
+import Map from "./components/Map";
+import Footer from "./components/Footer";
+import Dashboard from "./components/dashboard";
+import Login from "./components/LogIn";
+import SignUpModal from "./components/SignUpModal";
+import Card from "./components/Card";
+import Subscription from "./components/Subscription";
 // import Payment from "../components/Payment";
 
 function App() {
