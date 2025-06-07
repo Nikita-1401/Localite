@@ -39,7 +39,7 @@ function App() {
   // Public Home component
   const PublicHome = () => (
     <>
-      <Carousel />
+     <Carousel onLoginClick={() => setActiveModal("signin")} />
       <SearchSection />
       <div
         style={{
@@ -59,7 +59,7 @@ function App() {
   // Protected Home component (after login)
   const ProtectedHome = () => (
     <>
-      <Carousel />
+    <Carousel onLoginClick={() => setActiveModal("signin")} />
       <SearchSection />
       <div
         style={{
