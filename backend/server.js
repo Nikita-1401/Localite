@@ -1,16 +1,16 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import Razorpay from 'razorpay';
-import crypto from 'crypto';
-import bodyParser from 'body-parser';
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import Razorpay from "razorpay";
+import crypto from "crypto";
+import bodyParser from "body-parser";
 
-import connectDB from './lib/db.js';
-import placeSchema from './lib/Schema.js';
-import uploadRouter from './routes/upload.js';
-import mongoRouter from './routes/mongo.js';
-import AuthRouter from './routes/AuthRouter.js';
+import connectDB from "./lib/db.js";
+import placeSchema from "./lib/Schema.js";
+import uploadRouter from "./routes/upload.js";
+import mongoRouter from "./routes/mongo.js";
+import AuthRouter from "./routes/AuthRouter.js";
 
 dotenv.config();
 const app = express();
@@ -22,18 +22,16 @@ const razorpay = new Razorpay({
 });
 
 // Middleware
-app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
 app.use(express.json());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api/auth', AuthRouter);
-app.use('/api/mongo', mongoRouter);
-app.use('/api/upload', uploadRouter);
- 
+app.use("/api/auth", AuthRouter);
+app.use("/api/mongo", mongoRouter);
+app.use("/api/upload", uploadRouter);
 
-
-// Razorpay Order Creation (No plan_id required)
+// Razorpay Order Creation  
 app.post("/api/subscribe", async (req, res) => {
   try {
     const { amount, currency } = req.body;
@@ -58,7 +56,8 @@ app.post("/api/subscribe", async (req, res) => {
 // Razorpay Payment Verification
 app.post("/api/payment/verify", async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+      req.body;
 
     const generated_signature = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
@@ -68,7 +67,9 @@ app.post("/api/payment/verify", async (req, res) => {
     if (generated_signature === razorpay_signature) {
       res.json({ success: true, message: "Payment verified successfully" });
     } else {
-      res.status(400).json({ success: false, message: "Payment verification failed" });
+      res
+        .status(400)
+        .json({ success: false, message: "Payment verification failed" });
     }
   } catch (error) {
     console.error("Payment verification failed:", error);
@@ -77,14 +78,15 @@ app.post("/api/payment/verify", async (req, res) => {
 });
 
 // Dummy routes
-app.get('/', (req, res) => res.send('Hello World'));
+app.get("/", (req, res) => res.send("Hello World"));
 
-app.get('/getPlaces', (req, res) => {
-  placeSchema.find()
-    .then(places => res.json(places))
-    .catch(err => {
-      console.error('Error fetching places:', err);
-      res.status(500).json({ error: 'Failed to fetch places' });
+app.get("/getPlaces", (req, res) => {
+  placeSchema
+    .find()
+    .then((places) => res.json(places))
+    .catch((err) => {
+      console.error("Error fetching places:", err);
+      res.status(500).json({ error: "Failed to fetch places" });
     });
 });
 

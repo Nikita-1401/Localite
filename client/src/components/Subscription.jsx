@@ -99,7 +99,7 @@ const Subscription = () => {
 
           <button
             onClick={handleSubscribe}
-            disabled={loading}
+            disabled={loading} 
             className={`mt-6 w-full ${
               loading ? 'bg-gray-500' : 'bg-black hover:bg-gray-800'
             } text-white py-3 rounded-md text-base font-medium transition-colors`}

@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-const Carousel = () => {
+const Carousel = ({ onLoginClick }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
-
     const navigate = useNavigate();
 
-    // Add your images here
     const images = [
         '/ranchi.avif',
         '/picture.png',
@@ -23,10 +20,23 @@ const Carousel = () => {
             setCurrentSlide((prevSlide) => 
                 prevSlide === images.length - 1 ? 0 : prevSlide + 1
             );
-        }, 3000); // Change slide every 3 seconds
+        }, 3000);
 
         return () => clearInterval(timer);
     }, []);
+
+    const isAuthenticated = () => {
+        return localStorage.getItem("Token") !== null;
+    };
+
+    const handleGetStarted = () => {
+        if (isAuthenticated()) {
+            navigate('/dashboard');
+        } else {
+            // Trigger the same login modal behavior as Navbar
+            onLoginClick();
+        }
+    };
 
     return (
         <section className="relative w-full min-h-[50vh] md:min-h-[60vh] bg-emerald-50 ">
@@ -80,6 +90,7 @@ const Carousel = () => {
                         →
                     </button>
                 </div>
+                
                 {/* Text content */}
                 <div className="w-full md:w-1/2 space-y-4 text-center md:text-left mt-10">
                     <h1 className="text-4xl md:text-5xl font text-emerald-700 font-bold">
@@ -89,15 +100,15 @@ const Carousel = () => {
                         Discover and connect with the best local service providers in your area
                     </p>
                     <button 
-                    onClick={() => navigate('/listings')}
-                    className="bg-emerald-600 text-white px-8 py-3 rounded-full hover:bg-emerald-700 transition-colors font-bold ">
+                        onClick={handleGetStarted}
+                        className="bg-emerald-600 text-white px-8 py-3 rounded-full hover:bg-emerald-700 transition-colors font-bold "
+                    >
                         Get Started
                     </button>
                 </div>
-
             </div>
         </section>
     );
 };
 
-export default Carousel; 
+export default Carousel;
