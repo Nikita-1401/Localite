@@ -11,7 +11,7 @@ import Login from "./components/LogIn";
 import SignUpModal from "./components/SignUpModal";
 import Card from "./components/Card";
 import Subscription from "./components/Subscription";
-// import Payment from "../components/Payment";
+import Payment from "./components/Payment";
 
 function App() {
   const [activeModal, setActiveModal] = useState(null);
@@ -39,14 +39,16 @@ function App() {
   // Public Home component
   const PublicHome = () => (
     <>
-      <Carousel />
+     <Carousel onLoginClick={() => setActiveModal("signin")} />
       <SearchSection />
-      <div style={{
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "50px auto",
-        padding: "0 1rem",
-      }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "50px auto",
+          padding: "0 1rem",
+        }}
+      >
         <Map locations={locations} />
       </div>
       <Subscription />
@@ -57,14 +59,16 @@ function App() {
   // Protected Home component (after login)
   const ProtectedHome = () => (
     <>
-      <Carousel />
+    <Carousel onLoginClick={() => setActiveModal("signin")} />
       <SearchSection />
-      <div style={{
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "50px auto",
-        padding: "0 1rem",
-      }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "50px auto",
+          padding: "0 1rem",
+        }}
+      >
         {/* <Map locations={locations} /> */}
       </div>
       <Card />
@@ -97,9 +101,11 @@ function App() {
 
         <Routes>
           {/* Public routes */}
-          <Route 
-            path="/" 
-            element={!isAuthenticated() ? <PublicHome /> : <Navigate to="/home" />} 
+          <Route
+            path="/"
+            element={
+              !isAuthenticated() ? <PublicHome /> : <Navigate to="/home" />
+            }
           />
 
           {/* Protected routes */}
@@ -115,7 +121,6 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Card/>
                 <Dashboard />
               </ProtectedRoute>
             }
