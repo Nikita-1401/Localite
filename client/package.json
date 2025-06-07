@@ -28,6 +28,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
+    "react-toastify": "^11.0.5",
     "use-places-autocomplete": "^4.0.1"
   },
   "devDependencies": {
@@ -40,7 +41,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.32",
-    "tailwindcss": "^4.1.7",
-    "vite": "^5.0.8"
+    "tailwindcss": "^4.1.8",
+    "vite": "^5.4.19"
   }
 }
