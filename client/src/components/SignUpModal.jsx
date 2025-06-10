@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [Loading,setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
   const [signUpData, setSignUpData] = useState({
     name: "",
     email: "",
@@ -34,7 +34,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
       toast.error("Passwords do not match", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
  
@@ -50,7 +50,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
       toast.error("Please fill all the fields", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
  
@@ -77,7 +77,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         toast.success(message, {
           position: "top-center",
  
-          autoClose: 3000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
  
@@ -93,7 +93,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       } else {
         toast.error(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 2000,
           hideProgressBar: false,
  
           closeOnClick: true,
@@ -109,7 +109,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
       toast.error("Error signing up", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
  
