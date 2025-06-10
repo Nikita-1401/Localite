@@ -34,7 +34,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
       toast.error("Passwords do not match", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
  
@@ -77,7 +77,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         toast.success(message, {
           position: "top-center",
  
-          autoClose: 3000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
  
