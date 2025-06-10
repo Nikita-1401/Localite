@@ -16,14 +16,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    subscription: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Subscription'
-    },
-    isSubscribed: {
-        type: Boolean,
-        default: false
-    }
+     
 });
 
 // Fix: Check if already compiled

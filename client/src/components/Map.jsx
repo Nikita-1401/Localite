@@ -13,9 +13,11 @@ const center = {
 };
 
 const Map = ({ locations = [] }) => {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
   return (
     <div className="map-container">
-      <LoadScript googleMapsApiKey="AIzaSyAUAkJwsQcZAWbFRHBP73SupKpmgcyt9e4">
+      <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
@@ -26,6 +28,7 @@ const Map = ({ locations = [] }) => {
           ))}
         </GoogleMap>
       </LoadScript>
+
 
       <style jsx>{`
         .map-container {
