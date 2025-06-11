@@ -52,17 +52,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       const data = await response.json();
       console.log(data);
       const {success, message, token, user } = data;
-      // toast.success('Login successful', {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: false,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   transition: Bounce,
-      //   });
+       
       if(success){
         localStorage.setItem("Token", token);
         localStorage.setItem("LoggedInUser", user.name);
@@ -71,7 +61,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
   
         toast.success(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
 
@@ -88,12 +78,12 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
           setTimeout(() => {
             navigate(data.redirectUrl);
             onClose(); // Close the login modal after successful redirect
-          }, 3000);
+          }, 1000);
         }
       } else {
         toast.error(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
 
@@ -111,7 +101,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     } catch (err) {
       toast.error("Error logging in", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -123,17 +113,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
     }
   }
 
-  // toast.success('Login successful', {
-  //   position: "top-center",
-  //   autoClose: 5000,
-  //   hideProgressBar: false,
-  //   closeOnClick: false,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "light",
-  //   transition: Bounce,
-  //   });
+   
 
   return (
     <>
