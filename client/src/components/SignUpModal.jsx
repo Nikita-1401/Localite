@@ -93,7 +93,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
       } else {
         toast.error(message, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose: 1000,
           hideProgressBar: false,
  
           closeOnClick: true,
@@ -109,7 +109,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
  
       toast.error("Error signing up", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
  
