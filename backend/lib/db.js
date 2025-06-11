@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 //lib/db.js
 
 import mongoose from 'mongoose';
@@ -14,6 +15,8 @@ const connectDB = async () => {
 
 export default connectDB;
 =======
+=======
+>>>>>>> satyam
 import mongoose from "mongoose";
 
 const connectDB = async () => {
@@ -27,4 +30,7 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+<<<<<<< HEAD
 >>>>>>> df40efa904236ea4ee6d41cc144800c2595d2801
+=======
+>>>>>>> satyam
