@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+//lib/db.js
+
+import mongoose from 'mongoose';
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Localite');
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (err) {
+        console.log('MongoDB Connection Error: ', err);
+    }
+}
+
+export default connectDB;
+=======
+=======
+>>>>>>> satyam
 import mongoose from "mongoose";
 
 const connectDB = async () => {
@@ -11,3 +30,7 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+<<<<<<< HEAD
+>>>>>>> df40efa904236ea4ee6d41cc144800c2595d2801
+=======
+>>>>>>> satyam
