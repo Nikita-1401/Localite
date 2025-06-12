@@ -11,7 +11,7 @@ import Login from "./components/LogIn";
 import SignUpModal from "./components/SignUpModal";
 import Card from "./components/Card";
 import Subscription from "./components/Subscription";
-import Payment from "./components/Payment";
+ 
 
 function App() {
   const [activeModal, setActiveModal] = useState(null);
@@ -52,7 +52,7 @@ function App() {
         <Map locations={locations} />
       </div>
       <Subscription />
-      {/* <Payment /> */}
+ 
     </>
   );
 
@@ -73,7 +73,7 @@ function App() {
       </div>
       <Card />
       <Subscription />
-      {/* <Payment /> */}
+     
     </>
   );
 
