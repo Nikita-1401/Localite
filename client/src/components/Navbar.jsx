@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = ({ onSignupClick, onLoginClick, isAuthenticated }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,10 +35,18 @@ const Navbar = ({ onSignupClick, onLoginClick, isAuthenticated }) => {
           <div className='flex gap-2 flex-1'>
             <input 
               type="text" 
-              placeholder="Search" 
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className='border border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-emerald-50 rounded-md p-2 w-full lg:w-[500px]' 
+              onKeyPress={(e) => e.key === 'Enter' && searchQuery.trim() && navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)}  
             />
-            <button className='cursor-pointer bg-emerald-700 text-white rounded-md p-2 whitespace-nowrap'>Search</button>
+            <button 
+              onClick={() => searchQuery.trim() && navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)} 
+              className='cursor-pointer bg-emerald-700 text-white rounded-md p-2 whitespace-nowrap'
+            >
+              Search
+            </button>
           </div>
         </div>
 

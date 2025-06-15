@@ -196,7 +196,7 @@ const Dashboard = () => {
         >
           <option value="">Select Category</option>
           <option value="spots">Visiting spot</option>
-          <option value="lodging">Lodging</option>
+          <option value="Hotels">Hotels</option>
           <option value="restaurants">Restaurant</option>
           <option value="shopping">Shopping</option>
           <option value="services">Services</option>

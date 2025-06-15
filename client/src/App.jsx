@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import Dashboard from "./components/dashboard";
 import Login from "./components/LogIn";
 import SignUpModal from "./components/SignUpModal";
 import Card from "./components/Card";
+import SearchResults from "./components/SearchResults";
 import Subscription from "./components/Subscription";
 import Payment from "./components/Payment";
 
@@ -131,6 +133,14 @@ function App() {
               <ProtectedRoute>
                 <Card />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+               
+                <SearchResults />
+              
             }
           />
         </Routes>
