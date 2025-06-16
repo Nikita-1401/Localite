@@ -1,33 +1,77 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Card = () => {
+const SearchResults = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Extract search query from URL
+  const searchQuery = new URLSearchParams(location.search).get("q");
 
   useEffect(() => {
-    const fetchPlaces = async () => {
+    const fetchSearchResults = async () => {
+      if (!searchQuery) {
+        navigate("/listings");
+        return;
+      }
+
       try {
+        setLoading(true);
         const token = localStorage.getItem("Token");
-        const response = await axios.get("http://localhost:5000/api/mongo/getPlaces", {
-          headers: {
-            Authorization: `Bearer ${token}`
+        
+        // First try with token if available
+        if (token) {
+          try {
+            const response = await axios.get(`http://localhost:5000/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            
+            setPlaces(response.data);
+            setError(null);
+            setLoading(false);
+            return;
+          } catch (tokenError) {
+            // If token authentication fails, try without token
+            console.log("Token authentication failed, trying without token");
           }
-        });
+        }
+        
+        // Try without token as fallback
+        const response = await axios.get(`http://localhost:5000/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`);
         setPlaces(response.data);
         setError(null);
       } catch (err) {
-        console.error("Error fetching places:", err);
-        setError("Failed to load places. Please try again later.");
+        console.error("Error fetching search results:", err);
+        
+        // More detailed error handling
+        if (err.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          if (err.response.status === 401 || err.response.status === 403) {
+            setError("Authentication error. Please log in again.");
+          } else {
+            setError(`Error: ${err.response.data.message || "Failed to load search results. Please try again later."}`);
+          }
+        } else if (err.request) {
+          // The request was made but no response was received
+          setError("No response from server. Please check your connection and try again.");
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          setError("Failed to load search results. Please try again later.");
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPlaces();
-  }, []);
+    fetchSearchResults();
+  }, [searchQuery, navigate]);
 
   const [showDetails, setShowDetails] = useState({});
 
@@ -53,40 +97,28 @@ const Card = () => {
 
   if (places.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 flex items-center justify-center">
-        <div className="text-xl text-gray-600">No places found.</div>
+      <div className="min-h-screen bg-gray-50 p-4 flex flex-col items-center justify-center space-y-4">
+        <div className="text-xl text-gray-600">No places found matching '{searchQuery}'.</div>
+        <button 
+          onClick={() => navigate("/listings")} 
+          className="px-6 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors"
+        >
+          View All Listings
+        </button>
       </div>
     );
   }
 
-  // Get unique categories
-  const categories = ['all', ...new Set(places.map(place => place.category || 'Uncategorized'))];
-
-  // Filter places based on selected category
-  const filteredPlaces = selectedCategory === 'all' 
-    ? places 
-    : places.filter(place => (place.category || 'Uncategorized') === selectedCategory);
-
   return (
     <div className="min-h-screen bg-gray-50 p-4 space-y-8">
-      {/* Category filters */}
-      <div className="flex flex-wrap gap-4 justify-center pb-8">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`px-6 py-2 rounded-full text-lg font-medium transition-colors ${selectedCategory === category
-              ? 'bg-blue-600 text-white'
-              : 'bg-white text-gray-700 hover:bg-blue-50'}`}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
+      <div className="text-center">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">Search Results for '{searchQuery}'</h1>
+        <p className="text-gray-600">{places.length} place(s) found</p>
       </div>
 
       {/* Places listing */}
       <div className="space-y-8">
-        {filteredPlaces.map((place) => (
+        {places.map((place) => (
           <div
             key={place._id}
             className="bg-white shadow-lg border border-gray-200 w-full flex flex-col md:flex-row rounded-lg"
@@ -150,4 +182,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default SearchResults;
