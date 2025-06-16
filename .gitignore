@@ -32,7 +32,6 @@ backend/dist/
 .env
 .env.*.local
 client/.env
-
 backend/.env
 
 # ===================
