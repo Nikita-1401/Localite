@@ -55,7 +55,7 @@ const Dashboard = () => {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
@@ -113,7 +113,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/mongo/add", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mongo/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

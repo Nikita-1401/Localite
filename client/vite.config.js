@@ -1,17 +1,19 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import React from 'react'
 
-export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-  // Add proxy for backend API requests
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd()) // Load .env variables
+
+  return {
+    plugins: [react(), tailwindcss()],
+    server: {
+      proxy: {
+        '/api': {
+          target: env.VITE_API_URL, // Your deployed backend URL
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '') // Optional: remove `/api` prefix
+        }
       }
     }
   }

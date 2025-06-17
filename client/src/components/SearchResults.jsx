@@ -26,7 +26,7 @@ const SearchResults = () => {
         // First try with token if available
         if (token) {
           try {
-            const response = await axios.get(`http://localhost:5000/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`, {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -43,7 +43,7 @@ const SearchResults = () => {
         }
         
         // Try without token as fallback
-        const response = await axios.get(`http://localhost:5000/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/mongo/searchPlaces?q=${encodeURIComponent(searchQuery)}`);
         setPlaces(response.data);
         setError(null);
       } catch (err) {

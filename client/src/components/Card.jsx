@@ -6,12 +6,13 @@ const Card = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
         const token = localStorage.getItem("Token");
-        const response = await axios.get("http://localhost:5000/api/mongo/getPlaces", {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/mongo/getPlaces`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

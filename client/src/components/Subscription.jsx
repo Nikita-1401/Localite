@@ -8,7 +8,7 @@ const Subscription = () => {
   const handleSubscribe = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/subscribe", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -29,7 +29,7 @@ const Subscription = () => {
         order_id: data.orderId,
         theme: { color: "#7c3aed" },
         handler: async function (response) {
-          const verifyResponse = await fetch("http://localhost:5000/api/payment/verify", {
+          const verifyResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
