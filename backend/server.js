@@ -22,7 +22,10 @@ const razorpay = new Razorpay({
 });
 
 // Middleware
-app.use(cors({ origin: ["http://localhost:5173","https://localite-xzyk.vercel.app/"], credentials: true }));
+app.use(cors({ 
+  origin: process.env.ALLOWED_ORIGINS.split(','),
+  credentials: true 
+}));
 app.use(express.json());
 app.use(bodyParser.json());
 
