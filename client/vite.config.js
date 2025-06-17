@@ -3,16 +3,20 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd()) // Load .env variables
+  const env = loadEnv(mode, process.cwd())
+
+  const isDev = mode === 'development'
 
   return {
     plugins: [react(), tailwindcss()],
     server: {
       proxy: {
         '/api': {
-          target: env.VITE_API_URL, // Your deployed backend URL
+          target: isDev
+            ? 'http://localhost:5000' // ✅ Local backend
+            : 'https://localite-zi01.onrender.com', // ✅ Production backend
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '') // Optional: remove `/api` prefix
+          rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
     }
