@@ -22,7 +22,7 @@ const razorpay = new Razorpay({
 });
 
 // Middleware
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+// const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 app.use(cors());
 app.use(express.json());

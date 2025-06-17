@@ -1,23 +1,17 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+import React from 'react'
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
-
-  const isDev = mode === 'development'
-
-  return {
-    plugins: [react(), tailwindcss()],
-    server: {
-      proxy: {
-        '/api': {
-          target: isDev
-            ? 'http://localhost:5000' // ✅ Local backend
-            : 'https://localite-zi01.onrender.com', // ✅ Production backend
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        }
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+  ],
+  // Add proxy for backend API requests
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://localite-zi01.onrender.com',
+        changeOrigin: true,
       }
     }
   }
