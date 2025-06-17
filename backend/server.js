@@ -23,7 +23,7 @@ const razorpay = new Razorpay({
 
 // Middleware
 app.use(cors({ 
-  origin: process.env.ALLOWED_ORIGINS.split(','),
+  origin: process.env.ALLOWED_ORIGINS,
   credentials: true 
 }));
 app.use(express.json());
