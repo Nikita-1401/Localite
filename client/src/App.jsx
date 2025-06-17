@@ -8,7 +8,7 @@ import SearchSection from "./components/Search";
 import Map from "./components/Map";
 import Footer from "./components/Footer";
 import Dashboard from "./components/dashboard";
-import Login from "./components/LogIn";
+import Login from "./components/Login";
 import SignUpModal from "./components/SignUpModal";
 import Card from "./components/Card";
 import SearchResults from "./components/SearchResults";
