@@ -1,11 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import cors from "cors";
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import bodyParser from "body-parser";
-
 import connectDB from "./lib/db.js";
 import placeSchema from "./lib/Schema.js";
 import uploadRouter from "./routes/upload.js";
@@ -31,7 +29,7 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/mongo", mongoRouter);
 app.use("/api/upload", uploadRouter);
 
-// Razorpay Order Creation  
+// Razorpay Order Creation
 app.post("/api/subscribe", async (req, res) => {
   try {
     const { amount, currency } = req.body;
