@@ -10,8 +10,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'https://localite-zi01.onrender.com',
-        target:"https://localhost:5000",
+        target: 'https://localite-zi01.onrender.com',
+        // target:"https://localhost:5000",
         changeOrigin: true,
       }
     }
