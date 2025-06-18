@@ -7,20 +7,14 @@ const Navbar = ({ onSignupClick, onLoginClick, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle scroll to top on route changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   const handleLogout = () => {
-    // First scroll to top
     window.scrollTo(0, 0);
-    
-    // Then clear localStorage
     localStorage.removeItem("Token");
     localStorage.removeItem("LoggedInUser");
-    
-    // Navigate and reload immediately
     navigate("/");
     window.location.reload();
   };
@@ -50,15 +44,20 @@ const Navbar = ({ onSignupClick, onLoginClick, isAuthenticated }) => {
           </div>
         </div>
 
-        <button 
-          className='md:hidden p-2'
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <div className='w-6 h-0.5 bg-black mb-1'></div>
-          <div className='w-6 h-0.5 bg-black mb-1'></div>
-          <div className='w-6 h-0.5 bg-black'></div>
-        </button>
+        {/* Hamburger / Cross Icon */}
+        <div className='md:hidden z-50'>
+          {!isMenuOpen ? (
+            <button onClick={() => setIsMenuOpen(true)} className='p-2'>
+              <div className='w-6 h-0.5 bg-black mb-1'></div>
+              <div className='w-6 h-0.5 bg-black mb-1'></div>
+              <div className='w-6 h-0.5 bg-black'></div>
+            </button>
+          ) : (
+            <button onClick={() => setIsMenuOpen(false)} className='text-3xl font-bold px-4'>×</button>
+          )}
+        </div>
 
+        {/* Desktop Menu */}
         <div className='hidden md:flex gap-4'>
           {isAuthenticated ? (
             <>
@@ -76,20 +75,27 @@ const Navbar = ({ onSignupClick, onLoginClick, isAuthenticated }) => {
         </div>
       </div>
 
-      <div className={`${isMenuOpen ? 'flex' : 'hidden'} md:hidden flex-col gap-2 p-4 border-t border-emerald-300`}>
-        {isAuthenticated ? (
-          <>
-            <Link to="/home" className='cursor-pointer bg-white text-black rounded-full p-2 w-full text-center'>Home</Link>
-            <Link to="/dashboard" className='cursor-pointer bg-white text-black rounded-full p-2 w-full text-center'>Dashboard</Link>
-            <Link to="/listings" className='cursor-pointer bg-white text-black rounded-full p-2 w-full text-center'>Listings</Link>
-            <button onClick={handleLogout} className='cursor-pointer bg-red-500 text-white rounded-full p-2 w-full'>Logout</button>
-          </>
-        ) : (
-          <>
-            <button onClick={onLoginClick} className='cursor-pointer bg-white text-black rounded-full p-2 w-full'>Login</button>
-            <button onClick={onSignupClick} className='cursor-pointer bg-white text-black rounded-full p-2 w-full'>Signup</button>
-          </>
-        )}
+      {/* Fullscreen Mobile Slide Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full bg-white z-40 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden`}
+      >
+        <div className="flex flex-col gap-4 p-8 pt-20 items-center justify-center h-full">
+          {isAuthenticated ? (
+            <>
+              <Link to="/home" onClick={() => setIsMenuOpen(false)} className='cursor-pointer bg-emerald-100 text-black rounded-full p-3 w-3/4 text-center text-lg'>Home</Link>
+              <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className='cursor-pointer bg-emerald-100 text-black rounded-full p-3 w-3/4 text-center text-lg'>Dashboard</Link>
+              <Link to="/listings" onClick={() => setIsMenuOpen(false)} className='cursor-pointer bg-emerald-100 text-black rounded-full p-3 w-3/4 text-center text-lg'>Listings</Link>
+              <button onClick={() => { setIsMenuOpen(false); handleLogout(); }} className='cursor-pointer bg-red-500 text-white rounded-full p-3 w-3/4 text-lg'>Logout</button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className='cursor-pointer bg-emerald-100 text-black rounded-full p-3 w-3/4 text-lg'>Login</button>
+              <button onClick={() => { setIsMenuOpen(false); onSignupClick(); }} className='cursor-pointer bg-emerald-100 text-black rounded-full p-3 w-3/4 text-lg'>Signup</button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

@@ -12,7 +12,7 @@ const Card = () => {
     const fetchPlaces = async () => {
       try {
         const token = localStorage.getItem("Token");
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/mongo/getPlaces`, {
+        const response = await axios.get(`${API}/api/mongo/getPlaces`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -60,10 +60,8 @@ const Card = () => {
     );
   }
 
-  // Get unique categories
   const categories = ['all', ...new Set(places.map(place => place.category || 'Uncategorized'))];
 
-  // Filter places based on selected category
   const filteredPlaces = selectedCategory === 'all' 
     ? places 
     : places.filter(place => (place.category || 'Uncategorized') === selectedCategory);
@@ -97,7 +95,7 @@ const Card = () => {
               <img
                 src={place.imageUrl}
                 alt={place.name}
-                className="w-full h-[250px] md:h-[300px] object-cover rounded-lg m-2"
+                className="w-full h-48 sm:h-64 md:h-72 object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
               />
             </div>
 
