@@ -20,7 +20,9 @@ const razorpay = new Razorpay({
 });
 
 // Middleware
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+// const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -76,7 +78,7 @@ app.post("/api/payment/verify", async (req, res) => {
 });
 
 // Dummy routes
-app.get("/", (req, res) => res.send("Hello World"));
+app.get("/", (req, res) => res.send("Hello Nikita"));
 
 app.get("/getPlaces", (req, res) => {
   placeSchema

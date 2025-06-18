@@ -40,7 +40,7 @@ const Login = ({ onClose, onSwitchToSignUp }) => {
       return;
     }
     try {
-      const url = "http://localhost:5000/api/auth/login";
+      const url = `${import.meta.env.VITE_API_URL}/api/auth/login`;
       // const response = await axios.post(url, {email,password});
       const response = await fetch(url,{
         method: "POST",

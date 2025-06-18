@@ -55,7 +55,7 @@ const Dashboard = () => {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
@@ -113,7 +113,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/mongo/add", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mongo/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -196,7 +196,7 @@ const Dashboard = () => {
         >
           <option value="">Select Category</option>
           <option value="spots">Visiting spot</option>
-          <option value="lodging">Lodging</option>
+          <option value="Hotels">Hotels</option>
           <option value="restaurants">Restaurant</option>
           <option value="shopping">Shopping</option>
           <option value="services">Services</option>
